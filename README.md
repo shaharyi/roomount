@@ -1,6 +1,11 @@
 # Roomount web app
 based on react-redux boilerplate
 
+## get started:
+to run the client in development - `yarn start`
+to run the client in production - `yarn start:prod`
+to build the dist folder - `yarn build`
+
 ## Features
 
 <dl>
