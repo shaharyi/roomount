@@ -10,14 +10,18 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import HomePage from 'containers/HomePage/Loadable';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import HomePage from '../HomePage/Loadable';
+import NotFoundPage from '../NotFoundPage/Loadable';
+import Header from '../Header';
+import AuthService from '../AuthService';
 
 import GlobalStyle from '../../global-styles';
 
 export default function App() {
   return (
     <div>
+      <AuthService />
+      <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route component={NotFoundPage} />
