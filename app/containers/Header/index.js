@@ -14,8 +14,8 @@ import { compose } from 'redux';
 import messages from './messages';
 import { Container, LinksContainer, LogoContainer, StyledLink } from './styles';
 
-export function Header({ userInfo }) {
-  console.log(userInfo);
+export function Header({ authService }) {
+  // console.log(authService);
   return (
     <Container>
       <LogoContainer>
@@ -25,10 +25,10 @@ export function Header({ userInfo }) {
       </LogoContainer>
 
       <LinksContainer>
-        <StyledLink to="/">
+        <StyledLink to="/auth/register">
           <FormattedMessage {...messages.register} />
         </StyledLink>
-        <StyledLink to="/">
+        <StyledLink to="/auth/register">
           <FormattedMessage {...messages.signIn} />
         </StyledLink>
         <StyledLink to="/">
@@ -40,20 +40,17 @@ export function Header({ userInfo }) {
 }
 
 Header.propTypes = {
-  userInfo: PropTypes.object,
+  authService: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  userInfo: createSelector(
+  authService: createSelector(
     state => state.authService || {},
     substate => substate,
   ),
 });
 
-const withConnect = connect(
-  mapStateToProps,
-  null,
-);
+const withConnect = connect(mapStateToProps);
 
 export default compose(
   withConnect,

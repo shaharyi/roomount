@@ -14,6 +14,7 @@ import HomePage from '../HomePage/Loadable';
 import NotFoundPage from '../NotFoundPage/Loadable';
 import Header from '../Header';
 import AuthService from '../AuthService';
+import AuthPage from '../AuthPage';
 
 import GlobalStyle from '../../global-styles';
 
@@ -24,6 +25,7 @@ export default function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route path="/auth/:type(register|login)" component={AuthPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

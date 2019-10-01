@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const BackgroundImage = styled.img`
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  object-position: center;
-`;
-
 export const MainPanel = styled.div`
   background-color: white;
   height: 400px;
