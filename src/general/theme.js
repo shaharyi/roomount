@@ -1,4 +1,4 @@
 export const theme = {
-    mainColor:'blue',
-    secondaryColor:'green'
-}
+  mainColor: 'blue',
+  secondaryColor: 'green',
+};
