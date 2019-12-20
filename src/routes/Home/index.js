@@ -1,11 +1,12 @@
-import React, {
-  useState, useEffect,
-} from 'react';
+import React, { useState } from 'react';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import { useSelector, useDispatch } from 'react-redux';
 import { SearchByHotel } from './components/SearchByHotel';
 import './reducer';
+import { searchHotels } from './services';
+import { MainWrapper, ResultsWrapper, SearchWrapper } from './style';
+import { HotelItem } from './components/HotelItem';
 
 const SEARCH_OPTIONS = {
   HOTEL: 'HOTEL',
@@ -15,23 +16,20 @@ const SEARCH_OPTIONS = {
 export const Home = () => {
   const [searchOption, setSearchOption] = useState(SEARCH_OPTIONS.HOTEL);
 
-  const counter = useSelector((state) => state.auth.counter);
+  const { results, isLoading } = useSelector((state) => state.search);
   const dispatch = useDispatch();
-  useEffect(() => {
-    const interval = setInterval(() => {
-      dispatch({ type: 'INCREMENT' });
-    }, 1000);
+  const onSearch = () => {
+    dispatch({ type: 'GET_RESULTS' });
+    searchHotels({ a: 123 })
+      .then((hotels) => {
+        dispatch({ type: 'SET_RESULTS', results: hotels });
+      });
+  };
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, [dispatch]);
-  // console.log(counter);
   return (
-    <div>
-      <div>
+    <MainWrapper>
+      <SearchWrapper>
         Search by
-        {counter}
         <div>
           <button
             disabled={searchOption === SEARCH_OPTIONS.HOTEL}
@@ -49,12 +47,14 @@ export const Home = () => {
           </button>
         </div>
         {searchOption === SEARCH_OPTIONS.HOTEL
-          ? <SearchByHotel />
+          ? <SearchByHotel onSearch={onSearch} />
           : <div>location</div>}
-
-      </div>
-    </div>
+      </SearchWrapper>
+      {/* results */}
+      <ResultsWrapper>
+        {isLoading && 'LOADING'}
+        {!!results && results.map((result) => <HotelItem key={result.id} data={result} />)}
+      </ResultsWrapper>
+    </MainWrapper>
   );
 };
-
-// export default Home;

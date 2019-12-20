@@ -1,15 +1,25 @@
 import { addReducer } from '../../reduxUtils';
+import { HOTELS_MOCK } from './services';
 
 const initialState = {
-  counter: 0,
+  isLoading: false,
+  // results: [],
+  results: HOTELS_MOCK,
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'INCREMENT': {
+    case 'SET_RESULTS': {
       return {
         ...state,
-        counter: state.counter + 1,
+        isLoading: false,
+        results: action.results,
+      };
+    }
+    case 'GET_RESULTS': {
+      return {
+        ...state,
+        isLoading: true,
       };
     }
     default:
@@ -17,4 +27,4 @@ export const reducer = (state = initialState, action) => {
   }
 };
 
-addReducer('auth', reducer);
+addReducer('search', reducer);

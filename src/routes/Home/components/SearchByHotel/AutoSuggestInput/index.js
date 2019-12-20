@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Autosuggest from 'react-autosuggest';
 
-const languages = [
+const hotelNames = [
   'Coooo1',
   'Coooo2',
 ];
@@ -12,7 +12,7 @@ const getSuggestions = (value) => {
   const inputValue = value.trim().toLowerCase();
   const inputLength = inputValue.length;
 
-  return languages.filter((lang) => lang.toLowerCase().slice(0, inputLength) === inputValue);
+  return hotelNames.filter((lang) => lang.toLowerCase().slice(0, inputLength) === inputValue);
 };
 
 // When suggestion is clicked, Autosuggest needs to populate the input
@@ -34,7 +34,6 @@ export const AutosuggestInput = ({ onChange }) => {
   const onChangeInner = (event, { newValue }) => {
     setValue(newValue);
     onChange({ value: newValue, valid: suggestions.includes(newValue) });
-    // console.log('....', newValue);
   };
   const onSuggestionsFetchRequested = ({ value: newVal }) => {
     if (newVal.length < 3 && suggestions.length > 0) {
