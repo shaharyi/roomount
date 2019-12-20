@@ -19,17 +19,15 @@ export const HotelItem = ({
           <span>
             {name}
           </span>
-          <StarsCount stars={stars} />
+          <StarsCount stars={stars} starSize={15} />
         </Title>
         <TripAdvisor>
           <span>{`${tripAdvisorScore}`}</span>
           <span>{`${reviewCount || 'No'} reviews`}</span>
         </TripAdvisor>
         <Address>
-          <p>
-            {address}
-            <button type="button" onClick={() => console.log(address)}>show on map</button>
-          </p>
+          {address}
+          <button type="button" onClick={() => console.log(address)}>show on map</button>
         </Address>
 
       </TopContainer>
