@@ -9,6 +9,12 @@ export const HOTELS_MOCK = [
     kmFromCenter: 0.7,
     lowestPrice: 470,
     reviewCount: 3,
+
+    orderInfo: {
+      nights: 3,
+      adults: 2,
+      children: 2,
+    },
   },
   {
     id: 2,
@@ -19,6 +25,12 @@ export const HOTELS_MOCK = [
     lowestPrice: 470,
     tripAdvisorScore: 8.2,
     reviewCount: 3,
+
+    orderInfo: {
+      nights: 3,
+      adults: 2,
+      children: 2,
+    },
   },
   {
     id: 3,
@@ -29,6 +41,12 @@ export const HOTELS_MOCK = [
     lowestPrice: 470,
     tripAdvisorScore: 7.2,
     reviewCount: 3,
+
+    orderInfo: {
+      nights: 3,
+      adults: 2,
+      children: 2,
+    },
   },
   {
     id: 4,
@@ -39,6 +57,12 @@ export const HOTELS_MOCK = [
     lowestPrice: 470,
     tripAdvisorScore: 6.2,
     reviewCount: 3,
+
+    orderInfo: {
+      nights: 3,
+      adults: 2,
+      children: 2,
+    },
   },
   {
     id: 5,
@@ -49,6 +73,12 @@ export const HOTELS_MOCK = [
     lowestPrice: 470,
     tripAdvisorScore: 5.2,
     reviewCount: 3,
+
+    orderInfo: {
+      nights: 3,
+      adults: 2,
+      children: 2,
+    },
   },
 ];
 
