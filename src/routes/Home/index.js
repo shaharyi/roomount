@@ -7,6 +7,9 @@ import './reducer';
 import { searchHotels } from './services';
 import { MainWrapper, ResultsWrapper, SearchWrapper } from './style';
 import { HotelItem } from './components/HotelItem';
+import {
+  SegmentedControl, Text,
+} from 'evergreen-ui';
 
 const SEARCH_OPTIONS = {
   HOTEL: 'HOTEL',
@@ -25,27 +28,22 @@ export const Home = () => {
         dispatch({ type: 'SET_RESULTS', results: hotels });
       });
   };
+  const options = [
+    { label: 'Specific Hotel', value: SEARCH_OPTIONS.HOTEL },
+    { label: 'Location', value: SEARCH_OPTIONS.LOCATION },
+  ];
 
   return (
     <MainWrapper>
       <SearchWrapper>
-        Search by
-        <div>
-          <button
-            disabled={searchOption === SEARCH_OPTIONS.HOTEL}
-            type="button"
-            onClick={() => setSearchOption(SEARCH_OPTIONS.HOTEL)}
-          >
-            Specific Hotel
-          </button>
-          <button
-            disabled={searchOption === SEARCH_OPTIONS.LOCATION}
-            type="button"
-            onClick={() => setSearchOption(SEARCH_OPTIONS.LOCATION)}
-          >
-            Location
-          </button>
-        </div>
+        <Text>Search by</Text>
+        <SegmentedControl
+          width={240}
+          options={options}
+          value={searchOption}
+          onChange={(newState) => setSearchOption(newState)}
+        />
+
         {searchOption === SEARCH_OPTIONS.HOTEL
           ? <SearchByHotel onSearch={onSearch} />
           : <div>location</div>}

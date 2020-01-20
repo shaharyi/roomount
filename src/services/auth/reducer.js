@@ -25,6 +25,12 @@ const auth = (state = initialState, action) => {
         user: null,
       };
     }
+    case 'LOG_OUT': {
+      return {
+        ...state,
+        user: null,
+      };
+    }
     default:
       return state;
   }

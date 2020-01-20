@@ -8,3 +8,8 @@ export const logIn = (email, password, history) => async (dispatch) => {
   dispatch({ type: 'SET_USER', user });
   history.push('/');
 };
+
+export const logOut = (history) => async (dispatch) => {
+  dispatch({ type: 'LOG_OUT' });
+  history.push('/');
+};

@@ -28,6 +28,7 @@ size:600;
 export const AvatarContainer = styled(Pane)`
 align-items: center;
 display: flex;
+cursor: pointer;
 `;
 
 export const UserInfo = styled.div`
