@@ -7,7 +7,7 @@ export const StarsCount = ({ maxStars, stars, starSize }) => {
   const edge = 360 / starShape;
   const radius = starSize / 2;
   let s = 'M';
-  for (let i = 0; i < starShape; i++) {
+  for (let i = 0; i < starShape; i += 1) {
     const currentAngle = i * edge;
     const x = radius + Math.sin(currentAngle * (Math.PI / 180)) * radius;
     const y = radius + -Math.cos(currentAngle * (Math.PI / 180)) * radius;

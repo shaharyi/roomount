@@ -2,19 +2,23 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
+import { useHistory } from 'react-router-dom';
 import { logIn } from '../../services/auth';
 
 
 export const Auth = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
   const dispatch = useDispatch();
-  const dispatchLogin = logIn(dispatch);
 
   const onLoginSubmit = (e) => {
     e.preventDefault();
-    dispatchLogin(email, password);
+    console.log('AAAA');
+
+    dispatch(logIn(email, password, history));
   };
+
   const responseGoogle = (data) => {
     console.log(data);
   };
@@ -27,17 +31,16 @@ export const Auth = () => {
       <div>
         <h1>Login</h1>
         <div>
-          <FacebookLogin
+          {/* <FacebookLogin
             appId="1088597931155576"
             autoLoad
             fields="name,email,picture"
             callback={responseFacebook}
-          />
-,
+          /> */}
         </div>
         <div>
           <GoogleLogin
-            clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+            clientId="739589948921-ouh7vjufecr3m5po3f2jot94chlv5pgk.apps.googleusercontent.com"
             buttonText="Login"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}

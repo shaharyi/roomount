@@ -4,23 +4,12 @@ import { Container } from './styles';
 
 export const OrderInfo = ({ nights, adults, children }) => (
   <Container>
-    <div>
-      <span>{nights}</span>
-      <span>nights</span>
-    </div>
-    <div>
-      <span>{adults}</span>
-      <span>adults</span>
-    </div>
-    <div>
-      <span>{children}</span>
-      <span>children</span>
-    </div>
-    {`${nights} nights`}
-    {`${adults} adults`}
-    {`${children} children`}
+    <div>{`${nights} nights`}</div>
+    <div>{`${adults} adults`}</div>
+    <div>{`${children} children`}</div>
   </Container>
 );
+
 OrderInfo.propTypes = {
   nights: PropTypes.number,
   adults: PropTypes.number,

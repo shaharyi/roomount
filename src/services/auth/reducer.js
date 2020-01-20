@@ -1,7 +1,8 @@
 import { addReducer } from '../../reduxUtils';
 
+const user = localStorage.getItem('USER');
 const initialState = {
-  user: null,
+  user: user ? JSON.parse(user) : null,
   gettingUser: false,
 };
 
@@ -11,6 +12,7 @@ const auth = (state = initialState, action) => {
       return { ...state, gettingUser: true };
     }
     case 'SET_USER': {
+      localStorage.setItem('USER', JSON.stringify(action.user));
       return {
         ...state,
         user: action.user,

@@ -2,29 +2,35 @@ import React from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Wrapper, UserInfo, Logo } from './styles';
+import {
+  Button, Text, Avatar, Pane,
+} from 'evergreen-ui';
+import {
+  Outer, Wrapper, UserInfo, Logo, AvatarContainer,
+} from './styles';
 
 export const Header = () => {
   const { auth: { user } } = useSelector((state) => state);
   // const dispatch = useDispatch();
   const history = useHistory();
-  console.log('AUTHDATA', user);
   const goToLogin = () => {
     history.push('/auth');
   };
   return (
-    <Wrapper>
-      <Logo>Roomount</Logo>
-      <UserInfo>
-        {user
-          ? (
-            <div>
-              <img src={user.avatar} alt="avatar" />
-              {user.name}
-            </div>
-          )
-          : <div><button type="button" onClick={goToLogin}>login</button></div>}
-      </UserInfo>
-    </Wrapper>
+    <Outer elevation={2}>
+      <Wrapper>
+        <Logo>Roomount</Logo>
+        <UserInfo>
+          {user
+            ? (
+              <AvatarContainer>
+                <Avatar src={user.avatar} name={user.name} size={30} />
+                <Text>{user.name}</Text>
+              </AvatarContainer>
+            )
+            : <Button onClick={goToLogin}>login</Button>}
+        </UserInfo>
+      </Wrapper>
+    </Outer>
   );
 };
