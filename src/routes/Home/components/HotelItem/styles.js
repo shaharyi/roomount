@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
 display:grid;
 grid-template-columns: 150px auto;
 margin-bottom:15px;
-max-width:640px;
+/* max-width:640px; */
 border: solid 1px lightgray;
 position:relative;
 transition:box-shadow .2s;

@@ -36,7 +36,7 @@ export const AutosuggestInput = ({ onChange }) => {
 
         return (
           <TextInput
-            placeholder="Fruits"
+            placeholder="Hotel name"
             value={inputValue}
             innerRef={getRef}
 

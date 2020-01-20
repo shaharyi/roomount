@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
-import { useSelector, useDispatch } from 'react-redux';
-import { SearchByHotel } from './components/SearchByHotel';
-import './reducer';
-import { searchHotels } from './services';
-import { MainWrapper, ResultsWrapper, SearchWrapper } from './style';
-import { HotelItem } from './components/HotelItem';
+import { useDispatch } from 'react-redux';
 import {
   SegmentedControl, Text,
 } from 'evergreen-ui';
+import { SearchByHotel } from './components/SearchByHotel';
+import './reducer';
+import { searchHotels } from './services';
+import { MainWrapper, SearchWrapper } from './style';
+import { HotelResults } from './components/HotelResults';
 
 const SEARCH_OPTIONS = {
   HOTEL: 'HOTEL',
@@ -19,14 +19,9 @@ const SEARCH_OPTIONS = {
 export const Home = () => {
   const [searchOption, setSearchOption] = useState(SEARCH_OPTIONS.HOTEL);
 
-  const { results, isLoading } = useSelector((state) => state.search);
   const dispatch = useDispatch();
   const onSearch = () => {
-    dispatch({ type: 'GET_RESULTS' });
-    searchHotels({ a: 123 })
-      .then((hotels) => {
-        dispatch({ type: 'SET_RESULTS', results: hotels });
-      });
+    dispatch(searchHotels({ a: 123 }));
   };
   const options = [
     { label: 'Specific Hotel', value: SEARCH_OPTIONS.HOTEL },
@@ -48,11 +43,7 @@ export const Home = () => {
           ? <SearchByHotel onSearch={onSearch} />
           : <div>location</div>}
       </SearchWrapper>
-      {/* results */}
-      <ResultsWrapper>
-        {isLoading && 'LOADING'}
-        {!!results && results.map((result) => <HotelItem key={result.id} data={result} />)}
-      </ResultsWrapper>
+      <HotelResults />
     </MainWrapper>
   );
 };

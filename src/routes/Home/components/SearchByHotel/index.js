@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { DateRangePicker } from 'react-dates';
 import PropTypes from 'prop-types';
+import { Button, Text } from 'evergreen-ui';
 import { AutosuggestInput } from './AutoSuggestInput';
-// TODO: http://react-autosuggest.js.org/ add auto complete from here
 
 export const SearchByHotel = ({ onSearch }) => {
   const [searchString, setSearchString] = useState('');
@@ -36,10 +36,11 @@ export const SearchByHotel = ({ onSearch }) => {
       <AutosuggestInput onChange={onAutoSuggestChange} />
       {/* <input onChange={onInputChange} value={searchString} /> */}
       {startDateState && endDateState && (
-      <div>
+      <Text>
         {getNightsStayTest()}
-      </div>
+      </Text>
       ) }
+
       <DateRangePicker
         startDate={startDateState} // momentPropTypes.momentObj or null,
         startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
@@ -52,9 +53,10 @@ export const SearchByHotel = ({ onSearch }) => {
         focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
         onFocusChange={(focusedInputString) => setFocusedInput(focusedInputString)}
       />
-      <button type="submit" form="search_hotels" value="Submit">
+
+      <Button type="submit" form="search_hotels" value="Submit">
 Get best prices
-      </button>
+      </Button>
 
     </form>
   );

@@ -82,7 +82,9 @@ export const HOTELS_MOCK = [
   },
 ];
 
-export const searchHotels = (options) => new Promise((resolve) => {
+export const searchHotels = (options) => async (dispatch) => {
+  dispatch({ type: 'GET_RESULTS' });
   console.log('SerachingHotels', options);
-  setInterval(() => resolve(HOTELS_MOCK), 2000);
-});
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  dispatch({ type: 'SET_RESULTS', results: HOTELS_MOCK });
+};
