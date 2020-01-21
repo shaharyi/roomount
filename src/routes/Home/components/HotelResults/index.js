@@ -49,7 +49,7 @@ export const HotelResults = () => {
     { label: 'Stars', value: SORTING.STARS },
   ];
 
-
+  console.log(asc, sortBy);
   return (
     <div>
       <FilterContainer>
@@ -68,8 +68,8 @@ export const HotelResults = () => {
             };
             return (
               <FilterItem key={value} isSelected={isSelected} onClick={onItemSelected}>
-                <FilterItemText isSelected={isSelected}>{label}</FilterItemText>
-                <SortIcon asc={asc} show={isSelected} />
+                <FilterItemText>{label}</FilterItemText>
+                <SortIcon icon={asc ? 'caret-down' : 'caret-up'} />
               </FilterItem>
             );
           })}
@@ -77,7 +77,8 @@ export const HotelResults = () => {
       </FilterContainer>
       {isLoading
         ? <LoaderWrapper><Spinner /></LoaderWrapper>
-        : results.sort(getSortFunction(sortBy, asc)).map((result) => <HotelItem key={result.id} data={result} />)}
+        : results.sort(getSortFunction(sortBy, asc))
+          .map((result) => <HotelItem key={result.id} data={result} />)}
     </div>
   );
 };

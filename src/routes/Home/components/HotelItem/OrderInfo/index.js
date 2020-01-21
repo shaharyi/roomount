@@ -1,13 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  Text, Button, Strong, Pane, Paragraph,
+} from 'evergreen-ui';
 import { Container } from './styles';
 
 export const OrderInfo = ({ nights, adults, children }) => (
-  <Container>
-    <div>{`${nights} nights`}</div>
-    <div>{`${adults} adults`}</div>
-    <div>{`${children} children`}</div>
-  </Container>
+  <Pane>
+    <Paragraph>
+      <Strong>{nights}</Strong>
+      <Text> nights</Text>
+    </Paragraph>
+    <Paragraph>
+      <Strong>{adults}</Strong>
+      <Text> adults</Text>
+    </Paragraph>
+    <Paragraph>
+      <Strong>{children}</Strong>
+      <Text> children</Text>
+    </Paragraph>
+  </Pane>
 );
 
 OrderInfo.propTypes = {

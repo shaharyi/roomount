@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Text, Button, Strong } from 'evergreen-ui';
 import defaultImage from './defaultImage.png';
 import {
   Wrapper, Img, InfoContainer, Title, TripAdvisor, Address,
@@ -13,41 +14,43 @@ export const HotelItem = ({
     name, image, stars, kmFromCenter, tripAdvisorScore, address, reviewCount, lowestPrice,
     orderInfo,
   },
-}) => (
-  <Wrapper>
-    <Img src={image || defaultImage} alt="hotel_thumb" />
-    <InfoContainer>
-      <Title>
-        <span>
+}) => {
+  const seeAllRoomRates = () => {
+    console.log(name);
+  };
+  return (
+    <Wrapper>
+      <Img src={image || defaultImage} alt="hotel_thumb" />
+      <InfoContainer>
+        <Title>
           {name}
-        </span>
-        <StarsCount stars={stars} starSize={15} />
-      </Title>
-      <TripAdvisor>
-        <span>{`${tripAdvisorScore}`}</span>
-        <span>{`${reviewCount || 'No'} reviews`}</span>
-      </TripAdvisor>
-      <Address>
-        {address}
-        <button type="button" onClick={() => console.log(address)}>show on map</button>
-        <br />
-        {`${kmFromCenter} km from center`}
-      </Address>
+          <StarsCount stars={stars} starSize={15} />
+        </Title>
+        <TripAdvisor>
+          <Text>{`${tripAdvisorScore}`}</Text>
+          <Text>{`${reviewCount || 'No'} reviews`}</Text>
+        </TripAdvisor>
+        <Address>
+          {address}
+          <Button appearance="minimal" marginLeft={15} height={20} type="button" onClick={() => console.log(address)}>show on map</Button>
+          <br />
+          {`${kmFromCenter} km from center`}
+        </Address>
 
-      <OrderInfo {...orderInfo} />
+        <OrderInfo {...orderInfo} />
 
-      <LowestCost>
-        <div>
-          lowest available cost for your stay
-            $
-          {lowestPrice}
-        </div>
-        <AllRoomsLink>See all rooms and rates</AllRoomsLink>
-      </LowestCost>
+        <LowestCost>
+          <div>
+            <Text size={300}>lowest available cost for your stay </Text>
+            <Strong size={500}>{`$${lowestPrice}`}</Strong>
+          </div>
+          <AllRoomsLink onClick={seeAllRoomRates}>See all rooms and rates</AllRoomsLink>
+        </LowestCost>
 
-    </InfoContainer>
-  </Wrapper>
-);
+      </InfoContainer>
+    </Wrapper>
+  );
+};
 
 HotelItem.propTypes = {
   data: PropTypes.shape({

@@ -31,12 +31,11 @@ export const Auth = () => {
       <div>
         <h1>Login</h1>
         <div>
-          {/* <FacebookLogin
-            appId="1088597931155576"
-            autoLoad
+          <FacebookLogin
+            appId="469693480570889"
             fields="name,email,picture"
             callback={responseFacebook}
-          /> */}
+          />
         </div>
         <div>
           <GoogleLogin

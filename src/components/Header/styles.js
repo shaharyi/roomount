@@ -8,7 +8,7 @@ width:100%;
 position: sticky;
 top: 0;
 background: white;
-z-index: 1;
+z-index: 10;
 margin-bottom: 15px;
 `;
 

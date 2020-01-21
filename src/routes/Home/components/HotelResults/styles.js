@@ -19,23 +19,27 @@ export const FilterItem = styled(Badge)
   .attrs(() => ({
     padding: minorScale(1),
   }))`
+text-transform: none;
 display: inline-flex;
 cursor: pointer;
 align-items: center;
 background:${({ isSelected }) => (isSelected ? '#47B881' : 'transparent')};
+span {
+  ${({ isSelected }) => (isSelected && 'color:white')};
+}
+svg {
+  ${({ isSelected }) => (isSelected ? 'opacity:1' : '')}
+}
 `;
 
 export const FilterItemText = styled(Text)`
-${({ isSelected }) => (isSelected && 'color:white')};
+user-select: none;
 `;
 
 
-export const SortIcon = styled(Icon).attrs((props) => ({
-  icon: props.asc ? 'caret-down' : 'caret-up',
-}))`
+export const SortIcon = styled(Icon)`
 transition:.2s opacity;
 cursor:pointer;
 opacity:0;
 fill:white !important;
-${({ show }) => show && 'opacity:1'}
 `;
