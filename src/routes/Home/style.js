@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { Pane, minorScale } from 'evergreen-ui';
 
 export const MainWrapper = styled.div`
+max-width:1024px;
+margin:auto;
 display:grid;
 grid-template-columns: 320px auto;
 `;

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
-  Button, Text, Avatar, Popover, Menu, Position, minorScale,
+  Button, Text, Avatar, Popover, Menu, Position, minorScale, Icon,
 } from 'evergreen-ui';
 import { logOut } from '../../services/auth';
 import {
@@ -33,7 +33,7 @@ export const Header = () => {
                 content={(
                   <Menu>
                     <Menu.Item onSelect={handleLogout}>
-                        Log Out
+                        Sign Out
                     </Menu.Item>
                   </Menu>
 )}
@@ -45,7 +45,11 @@ export const Header = () => {
               </Popover>
 
             )
-            : <Button onClick={goToLogin}>login</Button>}
+            : (
+              <Button onClick={goToLogin}>
+                <Text>Sign In</Text>
+              </Button>
+            )}
         </UserInfo>
       </Wrapper>
     </Outer>

@@ -21,13 +21,11 @@ function App() {
       <Provider store={store}>
         <Router>
           <Header />
-          <MainWrapper>
-            <Switch>
-              <Route path="/route1" component={() => <div>route1</div>} />
-              <Route path="/auth" component={Auth} />
-              <Route path="/" component={Home} />
-            </Switch>
-          </MainWrapper>
+          <Switch>
+            <Route path="/route1" component={() => <div>route1</div>} />
+            <Route path="/auth" component={Auth} />
+            <Route path="/" component={Home} />
+          </Switch>
         </Router>
       </Provider>
     </ThemeProvider>

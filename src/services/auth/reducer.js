@@ -27,6 +27,7 @@ const auth = (state = initialState, action) => {
       };
     }
     case 'LOG_OUT': {
+      localStorage.removeItem('USER');
       return {
         ...state,
         user: null,
