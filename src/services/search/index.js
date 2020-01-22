@@ -1,9 +1,20 @@
 import './reducer';
-import { HOTELS_MOCK } from './mockHotels';
+import { HOTELS_MOCK, FULL_HOTEL } from './mockHotels';
 
-export const searchHotels = (options) => async (dispatch) => {
+export const searchHotels = (options, history) => async (dispatch) => {
   dispatch({ type: 'GET_RESULTS' });
-  console.log('SerachingHotels', options);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  dispatch({ type: 'SET_RESULTS', results: HOTELS_MOCK });
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  dispatch({ type: 'SET_RESULTS', data: HOTELS_MOCK });
+  history.push('/');
+};
+
+export const getFullHotelInfo = (hotelId) => async (dispatch) => {
+  dispatch({ type: 'GET_HOTEL' });
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  FULL_HOTEL.id = hotelId;
+  FULL_HOTEL.name = `MOCK_${hotelId}`;
+  dispatch({
+    type: 'SET_HOTEL',
+    data: FULL_HOTEL,
+  });
 };

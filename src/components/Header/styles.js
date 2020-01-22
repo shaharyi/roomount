@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-  Pane, Heading,
+  Pane, Heading, Text, Button,
 } from 'evergreen-ui';
 
 export const Outer = styled(Pane).attrs(({ theme }) => ({
@@ -22,12 +22,27 @@ height:60px;
 align-items:center;
 `;
 
+export const LogoWrapper = styled(Pane)`
+display:flex;
+flex-direction:column;
+span, h2 {
+color:${({ theme }) => theme.palette.blue.lightest};
+}
+h2{
+  font-size:28px
+}
+span {
+  font-size:11px;
+}
+`;
 
-export const Logo = styled(Heading)
-  .attrs(({ theme }) => ({
-    size: 600,
-    color: theme.palette.blue.lightest,
-  }))``;
+export const SignInButton = styled(Button).attrs(() => ({
+  appearance: 'minimal',
+}))`
+span {
+color:${({ theme }) => theme.palette.blue.lightest};
+}
+`;
 
 export const AvatarContainer = styled(Pane)`
 align-items: center;

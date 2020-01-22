@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pane, Heading } from 'evergreen-ui';
+import { Pane, Heading, Checkbox } from 'evergreen-ui';
 import { filtersState, allFiltersObject } from './filters';
 import { FilterCheckBox } from './styled';
 
@@ -12,12 +12,17 @@ export const SearchFilters = () => {
 
       {Object.keys(allFiltersObject).map((groupName) => {
         const group = allFiltersObject[groupName];
+        const additionalParam = group.isHalf ? {
+          display: 'inline-flex',
+          width: '50%',
+        } : {};
         return (
           <Pane key={groupName}>
             <Heading size={300}>{group.label}</Heading>
             {group.options.map(({ value, label }) => (
-              <FilterCheckBox
-                isHalf={group.isHalf}
+              <Checkbox
+                key={value}
+                {...additionalParam}
                 label={label}
                 checked={filters[value]}
                 onChange={(e) => {

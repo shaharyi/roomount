@@ -2,11 +2,11 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
-  Button, Text, Avatar, Popover, Menu, Position, minorScale,
+  Text, Avatar, Popover, Menu, Position, minorScale, Heading,
 } from 'evergreen-ui';
 import { logOut } from '../../services/auth';
 import {
-  Outer, Wrapper, UserInfo, Logo, AvatarContainer,
+  Outer, Wrapper, UserInfo, LogoWrapper, AvatarContainer, SignInButton,
 } from './styles';
 
 export const Header = () => {
@@ -19,12 +19,14 @@ export const Header = () => {
   const handleLogout = () => {
     dispatch(logOut(history));
   };
-  console.log(user && user.avatar);
 
   return (
     <Outer elevation={2}>
       <Wrapper>
-        <Logo>Roomount</Logo>
+        <LogoWrapper>
+          <Heading>Roomount</Heading>
+          <Text size={300}>Same room, better price.</Text>
+        </LogoWrapper>
         <UserInfo>
           {user
             ? (
@@ -51,9 +53,9 @@ export const Header = () => {
 
             )
             : (
-              <Button onClick={goToLogin}>
+              <SignInButton onClick={goToLogin}>
                 <Text>Sign In</Text>
-              </Button>
+              </SignInButton>
             )}
         </UserInfo>
       </Wrapper>

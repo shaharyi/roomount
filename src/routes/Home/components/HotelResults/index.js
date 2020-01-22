@@ -49,14 +49,13 @@ export const HotelResults = () => {
     { label: 'Stars', value: SORTING.STARS },
   ];
 
-  console.log(asc, sortBy);
   return (
     <div>
       <FilterContainer>
         <Heading>Sort By</Heading>
         <Pane>
           {options.map(({ label, value }) => {
-            const isSelected = sortBy === value;
+            const selected = sortBy === value;
             const onItemSelected = () => {
               if (value !== sortBy) {
                 setAsc(true);
@@ -67,7 +66,7 @@ export const HotelResults = () => {
               setSortBy(value);
             };
             return (
-              <FilterItem key={value} isSelected={isSelected} onClick={onItemSelected}>
+              <FilterItem key={value} selected={selected} onClick={onItemSelected}>
                 <FilterItemText>{label}</FilterItemText>
                 <SortIcon icon={asc ? 'caret-down' : 'caret-up'} />
               </FilterItem>

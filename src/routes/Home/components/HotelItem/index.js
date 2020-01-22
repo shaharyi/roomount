@@ -7,25 +7,19 @@ import {
   Wrapper, Img, InfoContainer, Title, TripAdvisor, Address,
   LowestCost, AllRoomsLink,
 } from './styles';
-import { StarsCount } from './StarsCount';
+import { StarsCount } from '../StarsCount';
 import { OrderInfo } from './OrderInfo';
 
 export const HotelItem = ({
   data,
 }) => {
   const {
-    name, image, stars, kmFromCenter, tripAdvisorScore, address, reviewCount, lowestPrice,
+    id, name, image, stars, kmFromCenter, tripAdvisorScore, address, reviewCount, lowestPrice,
     orderInfo,
   } = data;
-  const seeAllRoomRates = () => {
-    console.log(name);
-  };
   const dispatch = useDispatch();
-  const onShowOnMap = () => {
-    console.log('DISPATCH', data);
-    dispatch({ type: 'VIEW_HOTEL', payload: data });
-  };
-
+  const onShowOnMap = () => dispatch({ type: 'SHOW_ON_MAP', payload: data });
+  // /hotelInfo/id
   return (
     <Wrapper>
       <Img src={image || defaultImage} alt="hotel_thumb" />
@@ -40,7 +34,15 @@ export const HotelItem = ({
         </TripAdvisor>
         <Address>
           {address}
-          <Button appearance="minimal" marginLeft={15} height={20} type="button" onClick={onShowOnMap}>show on map</Button>
+          <Button
+            appearance="minimal"
+            marginLeft={15}
+            height={20}
+            type="button"
+            onClick={onShowOnMap}
+          >
+show on map
+          </Button>
           <br />
           {`${kmFromCenter} km from center`}
         </Address>
@@ -52,7 +54,7 @@ export const HotelItem = ({
             <Text size={300}>lowest available cost for your stay </Text>
             <Strong size={500}>{`$${lowestPrice}`}</Strong>
           </div>
-          <AllRoomsLink onClick={seeAllRoomRates}>See all rooms and rates</AllRoomsLink>
+          <AllRoomsLink to={`/hotelInfo/${id}`}>See all rooms and rates</AllRoomsLink>
         </LowestCost>
 
       </InfoContainer>
@@ -62,6 +64,7 @@ export const HotelItem = ({
 
 HotelItem.propTypes = {
   data: PropTypes.shape({
+    id: PropTypes.number,
     name: PropTypes.string,
     image: PropTypes.string,
     stars: PropTypes.number,

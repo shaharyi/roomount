@@ -74,10 +74,9 @@ const score = {
 const facilities = {
   isHalf: true,
   label: 'Property Facilities',
-  options: 'Restaurant,pets allowed,Fitness room, Sauna, Hotels only, Parking, Free parking, spa, welness center,pool, indoor pool, 24/7 frontdesk, beach access, full board meals, half board neals,Non-smoking rooms, free parking, family rooms, airport shuttle, lounge, Disabled guests facilities, room service, laundry service, business centre, Elevator, free WiFi in all areas, paid WiFi, Bar, Concierge Service,Allergy free room'
+  options: 'Restaurant,pets allowed,Fitness room, Sauna, Hotels only, Parking, Free parking, spa, welness center,pool, indoor pool, 24/7 frontdesk, beach access, full board meals, half board neals,Non-smoking rooms, family rooms, airport shuttle, lounge, Disabled guests facilities, room service, laundry service, business centre, Elevator, free WiFi in all areas, paid WiFi, Bar, Concierge Service,Allergy free room'
     .split(',')
     .map((str) => str.trim())
-    .map((a) => { console.log(a); return a; })
     .map((str) => ({ label: str, value: str.toLowerCase() })),
 };
 const amenities = {

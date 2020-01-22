@@ -24,6 +24,7 @@ function App() {
             <Route path="/route1" component={() => <div>route1</div>} />
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
+            <Route path="/hotelInfo/:hotelId" component={Home} />
             <Route path="/" component={Home} />
           </Switch>
         </Router>

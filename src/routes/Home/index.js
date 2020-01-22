@@ -1,64 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
-import { useDispatch } from 'react-redux';
-import {
-  SegmentedControl, Heading,
-} from 'evergreen-ui';
-
-import { SearchByHotel } from './components/SearchByHotel';
-import { searchHotels } from '../../services/search';
+import { useRouteMatch } from 'react-router-dom';
 import { HotelResults } from './components/HotelResults';
-import { MapWrapper } from './components/MapWrapper';
+import { HotelPage } from './components/HotelPage';
+import { SideSearch } from './components/SideSearch';
+import { getFullHotelInfo } from '../../services/search';
 import {
-  MainWrapper, SearchWrapper, ResultsWrapper, SectionContainer,
+  MainWrapper, SearchWrapper, ResultsWrapper,
 } from './style';
-import { SearchFilters } from './components/SearchFilters';
 
-const SEARCH_OPTIONS = {
-  HOTEL: 'HOTEL',
-  LOCATION: 'LOCATION',
-};
 
 export const Home = () => {
-  const [searchOption, setSearchOption] = useState(SEARCH_OPTIONS.HOTEL);
-
+  const match = useRouteMatch();
   const dispatch = useDispatch();
-  const onSearch = () => {
-    dispatch(searchHotels({ a: 123 }));
-  };
-  const options = [
-    { label: 'Specific Hotel', value: SEARCH_OPTIONS.HOTEL },
-    { label: 'Location', value: SEARCH_OPTIONS.LOCATION },
-  ];
-
+  const { fullDetails } = useSelector((state) => state.search);
+  const isHotelView = !!match.params.hotelId;
+  const differentIds = () => !fullDetails.info || fullDetails.info.id.toString() !== match.params.hotelId;
+  if (isHotelView && !fullDetails.loading && differentIds()) {
+    console.log('---------', fullDetails.loading, fullDetails.info, match.params.hotelId);
+    dispatch(getFullHotelInfo(match.params.hotelId));
+  }
+  // console.log('ISHOTEL VIEW', fullDetails, match.params);
   return (
     <MainWrapper>
       <SearchWrapper>
-        <SectionContainer>
-          <Heading>Search by</Heading>
-        </SectionContainer>
-        <SectionContainer>
-          <SegmentedControl
-            options={options}
-            value={searchOption}
-            onChange={(newState) => setSearchOption(newState)}
-          />
-        </SectionContainer>
-        <SectionContainer>
-          {searchOption === SEARCH_OPTIONS.HOTEL
-            ? <SearchByHotel onSearch={onSearch} />
-            : <div>location</div>}
-        </SectionContainer>
-        <SectionContainer>
-          <MapWrapper />
-        </SectionContainer>
-        <SectionContainer>
-          <SearchFilters />
-        </SectionContainer>
+        <SideSearch />
       </SearchWrapper>
       <ResultsWrapper>
-        <HotelResults />
+        {isHotelView
+          ? <HotelPage />
+          : <HotelResults /> }
+
       </ResultsWrapper>
     </MainWrapper>
   );

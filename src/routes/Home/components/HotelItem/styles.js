@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import {
-  minorScale, Heading, Pane, Text, Link,
+  minorScale, Heading, Pane, Text,
 } from 'evergreen-ui';
+import { Link } from 'react-router-dom';
 
 
 export const Wrapper = styled(Pane)
@@ -58,9 +59,7 @@ grid-column:span 2;
 `;
 
 
-export const AllRoomsLink = styled(Link).attrs(() => ({
-  size: 300,
-}))`
+export const AllRoomsLink = styled(Link)`
 cursor: pointer;
 text-align:right;
 `;

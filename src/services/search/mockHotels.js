@@ -86,3 +86,30 @@ export const HOTELS_MOCK = [
     },
   },
 ];
+
+
+export const FULL_HOTEL = {
+  id: 1,
+  name: 'Some Hotel 1',
+  address: 'Some Hotel 1 address park1 av',
+  image: 'https://pix10.agoda.net/hotelImages/96605/-1/dd32d9b188d86d6d8dc40d1ff9a0ebf6.jpg?s=1024x768',
+  stars: 1,
+  tripAdvisorScore: 9.2,
+  kmFromCenter: 0.7,
+  lowestPrice: 470,
+  reviewCount: 3,
+  location: [50.8179, 4.6997],
+
+  orderInfo: {
+    nights: 3,
+    adults: 2,
+    children: 2,
+  },
+  gallery: [
+    'http://react-responsive-carousel.js.org/assets/1.jpeg',
+    'http://react-responsive-carousel.js.org/assets/2.jpeg',
+    'http://react-responsive-carousel.js.org/assets/3.jpeg',
+    'http://react-responsive-carousel.js.org/assets/4.jpeg',
+    'http://react-responsive-carousel.js.org/assets/5.jpeg',
+  ],
+};

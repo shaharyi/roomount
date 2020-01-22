@@ -22,7 +22,7 @@ export const SearchByHotel = ({ onSearch }) => {
     console.log('submit', startDateState != null, endDateState != null, startDateState < endDateState, !!searchString);
 
     if (isFormValid()) {
-      onSearch(startDateState, endDateState, searchString);
+      onSearch({ startDateState, endDateState, searchString });
     }
   };
   const onAutoSuggestChange = ({ value, valid }) => {

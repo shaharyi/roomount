@@ -23,12 +23,12 @@ text-transform: none;
 display: inline-flex;
 cursor: pointer;
 align-items: center;
-background:${({ isSelected }) => (isSelected ? '#47B881' : 'transparent')};
+background:${({ selected }) => (selected ? '#47B881' : 'transparent')};
 span {
-  ${({ isSelected }) => (isSelected && 'color:white')};
+  ${({ selected }) => (selected && 'color:white')};
 }
 svg {
-  ${({ isSelected }) => (isSelected ? 'opacity:1' : '')}
+  ${({ selected }) => (selected ? 'opacity:1' : '')}
 }
 `;
 
