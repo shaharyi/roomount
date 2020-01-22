@@ -5,13 +5,13 @@ import {
   Pane, Heading, minorScale,
 } from 'evergreen-ui';
 import { emailSignIn, facebookSignIn, googleSignIn } from '../../services/auth';
+import { EmailPassword } from '../../shared/components/EmailPassword';
+import { SocialAuth } from '../../shared/components/SocialAuth';
 import {
   Container, Panel,
 } from './styles';
-import { EmailPassword } from './components/EmailPassword';
-import { SocialAuth } from './components/SocialAuth';
 
-export const Auth = () => {
+export const SignIn = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -33,9 +33,9 @@ export const Auth = () => {
         <Pane marginBottom={minorScale(4)}>
           <Heading size={600}>Sign in</Heading>
         </Pane>
-        <SocialAuth onFacebook={onFbAuthed} onGoogle={onGoogleAuthed} />
+        <SocialAuth centered onFacebook={onFbAuthed} onGoogle={onGoogleAuthed} />
         <Heading />
-        <EmailPassword onSubmit={onEmailSubmitted} label="Sign In" />
+        <EmailPassword centered onSubmit={onEmailSubmitted} label="Sign In" />
         <Pane />
       </Panel>
     </Container>

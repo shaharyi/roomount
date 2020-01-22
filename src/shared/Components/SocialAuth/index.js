@@ -1,16 +1,18 @@
 /* eslint-disable react/require-default-props */
+import {
+  Text,
+} from 'evergreen-ui';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import {
-  Text,
-} from 'evergreen-ui';
 import { SocialWrapper, SocialButton, SocialIcon } from './styles';
 import FB_SVG from './images/fb.svg';
 import GOOGLE_SVG from './images/google.svg';
 
-export const SocialAuth = ({ onFacebook, onGoogle, disabled }) => {
+export const SocialAuth = ({
+  centered, onFacebook, onGoogle, disabled,
+}) => {
   console.log(disabled);
   const onGoogleError = (data) => {
     console.error(data);
@@ -20,7 +22,7 @@ export const SocialAuth = ({ onFacebook, onGoogle, disabled }) => {
     onGoogle(response.profileObj);
   };
   return (
-    <SocialWrapper>
+    <SocialWrapper centered={centered}>
       <FacebookLogin
         appId="469693480570889"
         fields="name,email,picture"
@@ -55,4 +57,5 @@ SocialAuth.propTypes = {
   onFacebook: PropTypes.func,
   onGoogle: PropTypes.func,
   disabled: PropTypes.bool,
+  centered: PropTypes.bool,
 };

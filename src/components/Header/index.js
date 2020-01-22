@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
-  Button, Text, Avatar, Popover, Menu, Position, minorScale, Icon,
+  Button, Text, Avatar, Popover, Menu, Position, minorScale,
 } from 'evergreen-ui';
 import { logOut } from '../../services/auth';
 import {
@@ -14,7 +14,7 @@ export const Header = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const goToLogin = () => {
-    history.push('/auth');
+    history.push('/signin');
   };
   const handleLogout = () => {
     dispatch(logOut(history));
@@ -39,7 +39,12 @@ export const Header = () => {
 )}
               >
                 <AvatarContainer>
-                  <Avatar marginRight={minorScale(2)} src={user.avatar} name={user.name} size={30} />
+                  <Avatar
+                    marginRight={minorScale(2)}
+                    src={user.avatar}
+                    name={user.name}
+                    size={30}
+                  />
                   <Text>{user.name}</Text>
                 </AvatarContainer>
               </Popover>

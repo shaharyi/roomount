@@ -8,7 +8,7 @@ export const SocialWrapper = styled(Pane)
     marginBottom: minorScale(4),
   }))`
 display: flex;
-justify-content: center;
+${({ centered }) => centered && 'justify-content: center;'}
 `;
 
 
