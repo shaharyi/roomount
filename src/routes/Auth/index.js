@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import { useHistory } from 'react-router-dom';
-import { logIn } from '../../services/auth';
+import { emailLogin, facebookLogin, googleLogin } from '../../services/auth';
 
 
 export const Auth = () => {
@@ -16,14 +16,17 @@ export const Auth = () => {
     e.preventDefault();
     console.log('AAAA');
 
-    dispatch(logIn(email, password, history));
+    dispatch(emailLogin(email, password, history));
   };
 
-  const responseGoogle = (data) => {
+  const onGoogleError = (data) => {
     console.log(data);
   };
-  const responseFacebook = (response) => {
-    console.log(response);
+  const onGoogleSuccess = (response) => {
+    dispatch(googleLogin(response.profileObj, history));
+  };
+  const responseFacebook = (fbUser) => {
+    dispatch(facebookLogin(fbUser, history));
   };
 
   return (
@@ -38,11 +41,12 @@ export const Auth = () => {
           />
         </div>
         <div>
+          {/* "Not a valid origin for the client: http://localhost:3000 has not been whitelisted for client ID 739589948921-3rbapbvijd93c7tufhkn43m1p68bg44s.apps.googleusercontent.com. Please go to https://console.developers.google.com/ and whitelist this origin for your project's client ID." */}
           <GoogleLogin
-            clientId="739589948921-ouh7vjufecr3m5po3f2jot94chlv5pgk.apps.googleusercontent.com"
+            clientId="739589948921-3rbapbvijd93c7tufhkn43m1p68bg44s.apps.googleusercontent.com"
             buttonText="Login"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
+            onSuccess={onGoogleSuccess}
+            onFailure={onGoogleError}
             cookiePolicy="single_host_origin"
           />
 

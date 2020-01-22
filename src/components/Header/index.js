@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
-  Button, Text, Avatar, Popover, Menu, Position,
+  Button, Text, Avatar, Popover, Menu, Position, minorScale,
 } from 'evergreen-ui';
 import { logOut } from '../../services/auth';
 import {
@@ -19,6 +19,7 @@ export const Header = () => {
   const handleLogout = () => {
     dispatch(logOut(history));
   };
+  console.log(user && user.avatar);
 
   return (
     <Outer elevation={2}>
@@ -38,7 +39,7 @@ export const Header = () => {
 )}
               >
                 <AvatarContainer>
-                  <Avatar src={user.avatar} name={user.name} size={30} />
+                  <Avatar marginRight={minorScale(2)} src={user.avatar} name={user.name} size={30} />
                   <Text>{user.name}</Text>
                 </AvatarContainer>
               </Popover>

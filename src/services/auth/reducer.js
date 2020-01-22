@@ -8,11 +8,12 @@ const initialState = {
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
-    case 'GET_USER': {
+    case 'LOG_IN': {
       return { ...state, gettingUser: true };
     }
     case 'SET_USER': {
       localStorage.setItem('USER', JSON.stringify(action.user));
+      console.log(action.user);
       return {
         ...state,
         user: action.user,

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { Text, Button, Strong } from 'evergreen-ui';
 import defaultImage from './defaultImage.png';
 import {
@@ -10,14 +11,21 @@ import { StarsCount } from './StarsCount';
 import { OrderInfo } from './OrderInfo';
 
 export const HotelItem = ({
-  data: {
+  data,
+}) => {
+  const {
     name, image, stars, kmFromCenter, tripAdvisorScore, address, reviewCount, lowestPrice,
     orderInfo,
-  },
-}) => {
+  } = data;
   const seeAllRoomRates = () => {
     console.log(name);
   };
+  const dispatch = useDispatch();
+  const onShowOnMap = () => {
+    console.log('DISPATCH', data);
+    dispatch({ type: 'VIEW_HOTEL', payload: data });
+  };
+
   return (
     <Wrapper>
       <Img src={image || defaultImage} alt="hotel_thumb" />
@@ -32,7 +40,7 @@ export const HotelItem = ({
         </TripAdvisor>
         <Address>
           {address}
-          <Button appearance="minimal" marginLeft={15} height={20} type="button" onClick={() => console.log(address)}>show on map</Button>
+          <Button appearance="minimal" marginLeft={15} height={20} type="button" onClick={onShowOnMap}>show on map</Button>
           <br />
           {`${kmFromCenter} km from center`}
         </Address>

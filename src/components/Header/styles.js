@@ -3,17 +3,19 @@ import {
   Pane, Heading,
 } from 'evergreen-ui';
 
-export const Outer = styled(Pane)`
+export const Outer = styled(Pane).attrs(({ theme }) => ({
+  background: theme.palette.blue.dark,
+  color: 'white',
+}))`
 width:100%;
 position: sticky;
 top: 0;
-background: white;
+/* background: white; */
 z-index: 10;
-margin-bottom: 15px;
 `;
 
 export const Wrapper = styled(Pane)`
-width:1024px;
+max-width:1024px;
 margin:auto;
 display: flex;
 height:60px;
@@ -21,16 +23,21 @@ align-items:center;
 `;
 
 
-export const Logo = styled(Heading)`
-size:600;
-`;
+export const Logo = styled(Heading)
+  .attrs(({ theme }) => ({
+    size: 600,
+    color: theme.palette.blue.lightest,
+  }))``;
 
 export const AvatarContainer = styled(Pane)`
 align-items: center;
 display: flex;
 cursor: pointer;
+span{
+  color:${({ theme }) => theme.palette.blue.lightest} !important;
+}
 `;
 
-export const UserInfo = styled.div`
+export const UserInfo = styled(Pane)`
 margin-left:auto;
 `;

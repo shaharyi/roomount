@@ -3,13 +3,17 @@ import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import { useDispatch } from 'react-redux';
 import {
-  SegmentedControl, Text,
+  SegmentedControl, Heading,
 } from 'evergreen-ui';
+
 import { SearchByHotel } from './components/SearchByHotel';
-import './reducer';
-import { searchHotels } from './services';
-import { MainWrapper, SearchWrapper } from './style';
+import { searchHotels } from '../../services/search';
 import { HotelResults } from './components/HotelResults';
+import { MapWrapper } from './components/MapWrapper';
+import {
+  MainWrapper, SearchWrapper, ResultsWrapper, SectionContainer,
+} from './style';
+import { SearchFilters } from './components/SearchFilters';
 
 const SEARCH_OPTIONS = {
   HOTEL: 'HOTEL',
@@ -31,19 +35,31 @@ export const Home = () => {
   return (
     <MainWrapper>
       <SearchWrapper>
-        <Text>Search by</Text>
-        <SegmentedControl
-          width={240}
-          options={options}
-          value={searchOption}
-          onChange={(newState) => setSearchOption(newState)}
-        />
-
-        {searchOption === SEARCH_OPTIONS.HOTEL
-          ? <SearchByHotel onSearch={onSearch} />
-          : <div>location</div>}
+        <SectionContainer>
+          <Heading>Search by</Heading>
+        </SectionContainer>
+        <SectionContainer>
+          <SegmentedControl
+            options={options}
+            value={searchOption}
+            onChange={(newState) => setSearchOption(newState)}
+          />
+        </SectionContainer>
+        <SectionContainer>
+          {searchOption === SEARCH_OPTIONS.HOTEL
+            ? <SearchByHotel onSearch={onSearch} />
+            : <div>location</div>}
+        </SectionContainer>
+        <SectionContainer>
+          <MapWrapper />
+        </SectionContainer>
+        <SectionContainer>
+          <SearchFilters />
+        </SectionContainer>
       </SearchWrapper>
-      <HotelResults />
+      <ResultsWrapper>
+        <HotelResults />
+      </ResultsWrapper>
     </MainWrapper>
   );
 };

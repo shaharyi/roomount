@@ -28,6 +28,7 @@ export const AutosuggestInput = ({ onChange }) => {
 
   return (
     <Autocomplete
+      flex="1"
       onChange={(changedItem) => console.log(changedItem)}
       items={suggestions}
     >
@@ -36,6 +37,7 @@ export const AutosuggestInput = ({ onChange }) => {
 
         return (
           <TextInput
+            width="100%"
             placeholder="Hotel name"
             value={inputValue}
             innerRef={getRef}

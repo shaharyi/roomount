@@ -9,6 +9,7 @@ export const HOTELS_MOCK = [
     kmFromCenter: 0.7,
     lowestPrice: 470,
     reviewCount: 3,
+    location: [50.8179, 4.6997],
 
     orderInfo: {
       nights: 3,
@@ -25,6 +26,7 @@ export const HOTELS_MOCK = [
     lowestPrice: 470,
     tripAdvisorScore: 8.2,
     reviewCount: 3,
+    location: [50.8279, 4.6997],
 
     orderInfo: {
       nights: 3,
@@ -41,6 +43,7 @@ export const HOTELS_MOCK = [
     lowestPrice: 470,
     tripAdvisorScore: 7.2,
     reviewCount: 3,
+    location: [50.8379, 4.6997],
 
     orderInfo: {
       nights: 3,
@@ -57,6 +60,7 @@ export const HOTELS_MOCK = [
     lowestPrice: 470,
     tripAdvisorScore: 6.2,
     reviewCount: 3,
+    location: [50.8479, 4.6997],
 
     orderInfo: {
       nights: 3,
@@ -73,6 +77,7 @@ export const HOTELS_MOCK = [
     lowestPrice: 470,
     tripAdvisorScore: 5.2,
     reviewCount: 3,
+    location: [50.8579, 4.6997],
 
     orderInfo: {
       nights: 3,
@@ -81,10 +86,3 @@ export const HOTELS_MOCK = [
     },
   },
 ];
-
-export const searchHotels = (options) => async (dispatch) => {
-  dispatch({ type: 'GET_RESULTS' });
-  console.log('SerachingHotels', options);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  dispatch({ type: 'SET_RESULTS', results: HOTELS_MOCK });
-};

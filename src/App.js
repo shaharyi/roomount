@@ -3,6 +3,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { defaultTheme } from 'evergreen-ui';
 import { theme } from './general/theme';
 import './App.css';
 import { Header } from './components/Header';
@@ -16,7 +17,7 @@ const store = getStore();
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={defaultTheme}>
       <Provider store={store}>
         <Router>
           <Header />

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const DateRangePickerWrapper = styled.div`
+margin-bottom:8px;
 .DateRangePickerInput_1 {
 border:none;
 
@@ -15,5 +16,9 @@ width: 85px;
 font-size:14px;
 padding: 0;
 }
-
+.DateRangePickerInput_calendarIcon{
+margin:0;
+outline: none;
+padding:5px 10px 8px 10px;
+}
 `;

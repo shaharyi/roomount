@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { DateRangePicker } from 'react-dates';
 import PropTypes from 'prop-types';
-import { Button, Text } from 'evergreen-ui';
+import {
+  Button, Paragraph, minorScale,
+} from 'evergreen-ui';
 import { AutosuggestInput } from './AutoSuggestInput';
 import { DateRangePickerWrapper } from './styles';
 
@@ -19,7 +21,7 @@ export const SearchByHotel = ({ onSearch }) => {
     event.preventDefault();
     console.log('submit', startDateState != null, endDateState != null, startDateState < endDateState, !!searchString);
 
-    if (isFormValid() || true) {
+    if (isFormValid()) {
       onSearch(startDateState, endDateState, searchString);
     }
   };
@@ -35,13 +37,7 @@ export const SearchByHotel = ({ onSearch }) => {
   return (
     <form id="search_hotels" onSubmit={handleSubmit}>
       <AutosuggestInput onChange={onAutoSuggestChange} />
-      {/* <input onChange={onInputChange} value={searchString} /> */}
-      {startDateState && endDateState && (
-      <Text>
-        {getNightsStayTest()}
-      </Text>
-      ) }
-      <DateRangePickerWrapper>
+      <DateRangePickerWrapper marginBottom={minorScale(2)}>
         <DateRangePicker
           showDefaultInputIcon
           startDate={startDateState} // momentPropTypes.momentObj or null,
@@ -55,6 +51,11 @@ export const SearchByHotel = ({ onSearch }) => {
           focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
           onFocusChange={(focusedInputString) => setFocusedInput(focusedInputString)}
         />
+        {startDateState && endDateState && (
+          <Paragraph>
+            {getNightsStayTest()}
+          </Paragraph>
+        ) }
       </DateRangePickerWrapper>
 
       <Button type="submit" form="search_hotels" value="Submit" appearance="primary">
