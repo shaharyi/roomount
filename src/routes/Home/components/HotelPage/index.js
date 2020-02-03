@@ -1,12 +1,15 @@
+/* eslint-disable max-len */
+/* eslint-disable no-tabs */
 import React, { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import {
-  Pane, Spinner, Link, Text, Paragraph, Heading, Button, minorScale,
+  Pane, Spinner, Text, Paragraph, Heading, Button, minorScale,
 } from 'evergreen-ui';
 import { StarsCount } from '../StarsCount';
 import { HotelInfo, HotelInfoList } from './styles';
+import { RoomsTable } from './RoomsTable';
 
 export const HotelPage = () => {
   const { info, loading } = useSelector((state) => state.search.fullDetails);
@@ -20,7 +23,9 @@ export const HotelPage = () => {
   });
 
   const dispatch = useDispatch();
+
   const onShowOnMapClicked = () => dispatch({ type: 'SHOW_ON_MAP', payload: info });
+
   return (
     <div>
       {loading ? <Spinner /> : (
@@ -74,8 +79,7 @@ Praesent sagittis orci a elit eleifend sollicitudin imperdiet ut orci. Duis fauc
             </Paragraph>
           </Pane>
           <Pane innerRef={roomsRef}>
-					Rooms & Prices section (for paging)
-            {/* Room Type	Max adults		Price for N nights		Rate details		rooms */}
+            <RoomsTable />
           </Pane>
           <Pane innerRef={facilitiesRef}>
 					Facilities & Services section (for paging)
