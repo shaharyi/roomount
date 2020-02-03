@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 import {
   Spinner, Heading, Pane,
 } from 'evergreen-ui';
@@ -38,21 +39,24 @@ const getSortFunction = (sortBy, isAsc) => {
 };
 
 export const HotelResults = () => {
+  const { formatMessage } = useIntl();
   const { results, isLoading } = useSelector((state) => state.search);
   const [sortBy, setSortBy] = useState('time');
   const [asc, setAsc] = useState(true);
   const options = [
-    { label: 'Time since joined', value: SORTING.TIME },
-    { label: 'Price', value: SORTING.PRICE },
-    { label: 'Review score', value: SORTING.REVIEW },
-    { label: 'Distance from Center', value: SORTING.DISTANCE },
-    { label: 'Stars', value: SORTING.STARS },
+    { label: formatMessage({ id: 'results.sort_time' }), value: SORTING.TIME },
+    { label: formatMessage({ id: 'results.sort_price' }), value: SORTING.PRICE },
+    { label: formatMessage({ id: 'results.sort_review' }), value: SORTING.REVIEW },
+    { label: formatMessage({ id: 'results.sort_distance' }), value: SORTING.DISTANCE },
+    { label: formatMessage({ id: 'results.sort_stars' }), value: SORTING.STARS },
   ];
 
   return (
     <div>
       <FilterContainer>
-        <Heading>Sort By</Heading>
+        <Heading>
+          {formatMessage({ id: 'results.sortBy' })}
+        </Heading>
         <Pane>
           {options.map(({ label, value }) => {
             const selected = sortBy === value;

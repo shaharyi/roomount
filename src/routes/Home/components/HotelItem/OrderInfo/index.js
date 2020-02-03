@@ -1,26 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 import {
-  Text, Button, Strong, Pane, Paragraph,
+  Text, Strong, Pane, Paragraph,
 } from 'evergreen-ui';
-import { Container } from './styles';
 
-export const OrderInfo = ({ nights, adults, children }) => (
-  <Pane>
-    <Paragraph>
-      <Strong>{nights}</Strong>
-      <Text> nights</Text>
-    </Paragraph>
-    <Paragraph>
-      <Strong>{adults}</Strong>
-      <Text> adults</Text>
-    </Paragraph>
-    <Paragraph>
-      <Strong>{children}</Strong>
-      <Text> children</Text>
-    </Paragraph>
-  </Pane>
-);
+export const OrderInfo = ({ nights, adults, children }) => {
+  const { formatMessage } = useIntl();
+  return (
+    <Pane>
+      <Paragraph>
+        <Text>{formatMessage({ id: 'hotel.nights' }, { nights, elem: <Strong>{nights}</Strong> })}</Text>
+      </Paragraph>
+      <Paragraph>
+        <Text>{formatMessage({ id: 'hotel.adults' }, { adults, elem: <Strong>{adults}</Strong> })}</Text>
+      </Paragraph>
+      <Paragraph>
+        <Text>{formatMessage({ id: 'hotel.children' }, { children: 0, elem: <Strong>{children}</Strong> })}</Text>
+      </Paragraph>
+    </Pane>
+  );
+};
 
 OrderInfo.propTypes = {
   nights: PropTypes.number,

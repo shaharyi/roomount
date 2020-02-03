@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { Text, Button, Strong } from 'evergreen-ui';
 import defaultImage from './defaultImage.png';
@@ -13,6 +14,7 @@ import { OrderInfo } from './OrderInfo';
 export const HotelItem = ({
   data,
 }) => {
+  const { formatMessage } = useIntl();
   const {
     id, name, image, stars, kmFromCenter, tripAdvisorScore, address, reviewCount, lowestPrice,
     orderInfo,
@@ -30,7 +32,9 @@ export const HotelItem = ({
         </Title>
         <TripAdvisor>
           <Text>{`${tripAdvisorScore}`}</Text>
-          <Text>{`${reviewCount || 'No'} reviews`}</Text>
+          <Text>
+            {formatMessage({ id: 'hotel.reviewCount' }, { reviewCount })}
+          </Text>
         </TripAdvisor>
         <Address>
           {address}
@@ -41,20 +45,20 @@ export const HotelItem = ({
             type="button"
             onClick={onShowOnMap}
           >
-show on map
+            {formatMessage({ id: 'hotel.showOnMap' })}
           </Button>
           <br />
-          {`${kmFromCenter} km from center`}
+          {formatMessage({ id: 'hotel.kmFromCenter' }, { kmFromCenter })}
         </Address>
 
         <OrderInfo {...orderInfo} />
 
         <LowestCost>
           <div>
-            <Text size={300}>lowest available cost for your stay </Text>
+            <Text size={300}>{formatMessage({ id: 'hotel.lowestAvailable' })}</Text>
             <Strong size={500}>{`$${lowestPrice}`}</Strong>
           </div>
-          <AllRoomsLink to={`/hotelInfo/${id}`}>See all rooms and rates</AllRoomsLink>
+          <AllRoomsLink to={`/hotelInfo/${id}`}>{formatMessage({ id: 'hotel.seeAllRooms' })}</AllRoomsLink>
         </LowestCost>
 
       </InfoContainer>

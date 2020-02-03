@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 import {
   Heading, Button, Ul, Li,
 } from 'evergreen-ui';
@@ -8,31 +9,58 @@ import {
 } from './styles';
 
 export const RoomsTable = () => {
+  const { formatMessage } = useIntl();
   const { info, nights } = useSelector((state) => state.search.fullDetails);
   const { roomTypes } = info;
 
   const getRefundElement = (type) => {
     switch (type) {
-      case 'free': return <NormalText>No prepayment. Pay when you stay!</NormalText>;
-      case 'partial': return (
-        <NormalText className="tooltip-base" size={200}>
-          <NormalText>Partially refundable</NormalText>
-          <NormalText className="tooltip" size={200}>first night cost will be charged in case you cancel this reservation</NormalText>
+      case 'free': return (
+        <NormalText>
+          {formatMessage({ id: 'hotelPage.refund.free' })}
         </NormalText>
       );
-      default: return 'Non Refundable';
+      case 'partial': return (
+        <NormalText className="tooltip-base" size={200}>
+          <NormalText>{formatMessage({ id: 'hotelPage.refund.partial' })}</NormalText>
+          <NormalText className="tooltip" size={200}>{formatMessage({ id: 'hotelPage.refund.partialTooltip' })}</NormalText>
+        </NormalText>
+      );
+      default: return <NormalText>{formatMessage({ id: 'hotelPage.refund.none' })}</NormalText>;
     }
   };
   return (
     <Wrapper>
-      <Heading>Rooms & Prices section</Heading>
+      <Heading>
+        {formatMessage({ id: 'hotelPage.roomsAndPrices' })}
+      </Heading>
       <Table>
         <TableHeader>
-          <Cell><NormalText>Room Type</NormalText></Cell>
-          <Cell><NormalText>Max Adults</NormalText></Cell>
-          <Cell><NormalText>{`Price for ${nights} nights`}</NormalText></Cell>
-          <Cell><NormalText>Rate details</NormalText></Cell>
-          <Cell><NormalText>Rooms</NormalText></Cell>
+          <Cell>
+            <NormalText>
+              {formatMessage({ id: 'hotelPage.roomType' })}
+            </NormalText>
+          </Cell>
+          <Cell>
+            <NormalText>
+              {formatMessage({ id: 'hotelPage.maxAdults' })}
+            </NormalText>
+          </Cell>
+          <Cell>
+            <NormalText>
+              {formatMessage({ id: 'hotelPage.priceForNNight' }, { nights })}
+            </NormalText>
+          </Cell>
+          <Cell>
+            <NormalText>
+              {formatMessage({ id: 'hotelPage.rateDetails' })}
+            </NormalText>
+          </Cell>
+          <Cell>
+            <NormalText>
+              {formatMessage({ id: 'hotelPage.rooms' })}
+            </NormalText>
+          </Cell>
         </TableHeader>
         {roomTypes.map(({ type, rooms }, typeIndex) => {
           const title = type;
@@ -64,7 +92,9 @@ export const RoomsTable = () => {
                 </Ul>
               </Cell>
               <Cell flexBasis={90} flexShrink={0} flexGrow={0}>
-                <Button appearance="primary">Reserve</Button>
+                <Button appearance="primary">
+                  {formatMessage({ id: 'hotelPage.reserve' })}
+                </Button>
               </Cell>
             </Row>
           ));

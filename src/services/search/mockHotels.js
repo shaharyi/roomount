@@ -105,6 +105,7 @@ export const FULL_HOTEL = {
     adults: 2,
     children: 2,
   },
+  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget ullamcorper lacus. Suspendisse vulputate lectus sollicitudin elit egestas, nec tempus justo maximus. Aenean eget facilisis sapien. Pellentesque sit amet eros tincidunt, consequat turpis et, pharetra ante. Aliquam lacus nunc, maximus vel tempor eget, placerat at felis. Nulla vulputate, nunc at fringilla fermentum, ante nisi tincidunt ante, at placerat magna nibh quis tortor. Ut mattis diam eget ante efficitur vestibulum.',
   gallery: [
     'http://react-responsive-carousel.js.org/assets/1.jpeg',
     'http://react-responsive-carousel.js.org/assets/2.jpeg',

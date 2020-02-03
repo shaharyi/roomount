@@ -28,6 +28,46 @@
     "hotelNamePlaceHolder":"Hotel name",
     "nightsStay": "{nights, plural, one {# - night} other {# - nights}} stay"
   },
+  "results":{
+    "sortBy":"Sort By",
+    "sort_time":"Time since joined",
+    "sort_price":"Price",
+    "sort_review":"Review score",
+    "sort_distance":"Distance from Center",
+    "sort_stars":"Stars"
+  },
+  "hotel":{
+    "reviewCount":"{reviewCount, selectordinal,=0 {No} other {#}} reviews",
+    "showOnMap":"show on map",
+    "kmFromCenter":"{kmFromCenter} km from center",
+    "lowestAvailable":"lowest available cost for your stay ",
+    "seeAllRooms":"See all rooms and rates",
+    "nights": "{nights, plural, one {{elem} night} other {{elem} nights}}",
+    "adults": "{adults, plural, one {{elem} adult} other {{elem} adults}}",
+    "children": "{children, plural, one {{elem} child} other {{elem} children}}"
+  },
+  "hotelPage":{
+    "roomsAndPrices":"Rooms & Prices",
+    "facilitiesAndServices":"Facilities & Services",
+    "rulesAndPolicies":"Rules & Policies",
+    "reserve":"Reserve",
+    "freeBreakfastAvailable":"Free breakfast available",
+    "breakfastAvailable":"Breakfast available",
+    "freeCancellation":"Free cancellation available",
+    "freeWifi":"Free WiFI",
+    "description":"Description",
+    "roomType": "Room Type",
+    "maxAdults": "Max Adults",
+    "priceForNNight": "Price for {nights} nights",
+    "rateDetails": "Rate details",
+    "rooms": "Rooms",
+    "refund":{
+      "free":"No prepayment. Pay when you stay!",
+      "partial":"Partially refundable",
+      "partialTooltip":"first night cost will be charged in case you cancel this reservation",
+      "none":"Non Refundable"
+    }
+  },
   "filters":{
     "title":"Filters",
     "common": {

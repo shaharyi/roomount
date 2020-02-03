@@ -2,6 +2,7 @@
 /* eslint-disable no-tabs */
 import React, { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useIntl } from 'react-intl';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import {
@@ -12,6 +13,7 @@ import { HotelInfo, HotelInfoList } from './styles';
 import { RoomsTable } from './RoomsTable';
 
 export const HotelPage = () => {
+  const { formatMessage } = useIntl();
   const { info, loading } = useSelector((state) => state.search.fullDetails);
   const roomsRef = useRef();
   const facilitiesRef = useRef();
@@ -31,9 +33,15 @@ export const HotelPage = () => {
       {loading ? <Spinner /> : (
         <Pane id="hotel-info">
           <Pane>
-            <Text onClick={getScrollTo(roomsRef)}>Rooms & Prices</Text>
-            <Text onClick={getScrollTo(facilitiesRef)}>Facilities & Services</Text>
-            <Text onClick={getScrollTo(rulesRef)}>Rules & Policies</Text>
+            <Text onClick={getScrollTo(roomsRef)}>
+              {formatMessage({ id: 'hotelPage.roomsAndPrices' })}
+            </Text>
+            <Text onClick={getScrollTo(facilitiesRef)}>
+              {formatMessage({ id: 'hotelPage.facilitiesAndServices' })}
+            </Text>
+            <Text onClick={getScrollTo(rulesRef)}>
+              {formatMessage({ id: 'hotelPage.rulesAndPolicies' })}
+            </Text>
           </Pane>
 
           <HotelInfo>
@@ -44,18 +52,18 @@ export const HotelPage = () => {
               </Heading>
               <Paragraph>
                 {info.address}
-                <Button appearance="minimal" onClick={onShowOnMapClicked}>Show on map</Button>
+                <Button appearance="minimal" onClick={onShowOnMapClicked}>{formatMessage({ id: 'hotel.showOnMap' })}</Button>
               </Paragraph>
-              <Paragraph>{`${info.kmFromCenter} km from center`}</Paragraph>
+              <Paragraph>{formatMessage({ id: 'hotel.kmFromCenter' }, { kmFromCenter: info.kmFromCenter })}</Paragraph>
             </Pane>
             <Pane>
-              <Button appearance="primary">Reserve</Button>
+              <Button appearance="primary">{formatMessage({ id: 'hotelPage.reserve' })}</Button>
             </Pane>
             <HotelInfoList>
-              <Text color="muted">Free breakfast available</Text>
-              <Text>Breakfast available</Text>
-              <Text>Free cancellation available</Text>
-              <Text>Free WiFI</Text>
+              <Text color="muted">{formatMessage({ id: 'hotelPage.freeBreakfastAvailable' })}</Text>
+              <Text>{formatMessage({ id: 'hotelPage.breakfastAvailable' })}</Text>
+              <Text>{formatMessage({ id: 'hotelPage.freeCancellation' })}</Text>
+              <Text>{formatMessage({ id: 'hotelPage.freeWifi' })}</Text>
             </HotelInfoList>
           </HotelInfo>
 
@@ -70,22 +78,19 @@ export const HotelPage = () => {
             </Carousel>
           </Pane>
           <Pane>
-            <Heading marginBottom={minorScale(3)}>Description</Heading>
+            <Heading marginBottom={minorScale(3)}>{formatMessage({ id: 'hotelPage.description' })}</Heading>
             <Paragraph marginBottom={minorScale(3)}>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget ullamcorper lacus. Suspendisse vulputate lectus sollicitudin elit egestas, nec tempus justo maximus. Aenean eget facilisis sapien. Pellentesque sit amet eros tincidunt, consequat turpis et, pharetra ante. Aliquam lacus nunc, maximus vel tempor eget, placerat at felis. Nulla vulputate, nunc at fringilla fermentum, ante nisi tincidunt ante, at placerat magna nibh quis tortor. Ut mattis diam eget ante efficitur vestibulum.
-            </Paragraph>
-            <Paragraph marginBottom={minorScale(3)}>
-Praesent sagittis orci a elit eleifend sollicitudin imperdiet ut orci. Duis faucibus ex sed dolor sagittis mollis. Maecenas ante leo, tincidunt id tempor accumsan, bibendum in erat. Maecenas ornare mi id tortor feugiat ultricies. Vestibulum convallis in massa sit amet tincidunt. In varius nulla quis odio laoreet, eget facilisis justo vehicula. Phasellus felis lacus, eleifend eget fermentum id, pellentesque feugiat arcu. Cras condimentum placerat massa id ultrices. Cras est nunc, ornare eu accumsan vitae, mattis eget lacus. Integer interdum aliquam purus, in malesuada urna tincidunt non. Aliquam tempor justo ante, a ultrices metus ultricies et. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec porta est in justo finibus bibendum.
+              {info.description}
             </Paragraph>
           </Pane>
           <Pane innerRef={roomsRef}>
             <RoomsTable />
           </Pane>
           <Pane innerRef={facilitiesRef}>
-					Facilities & Services section (for paging)
+            {formatMessage({ id: 'hotelPage.facilitiesAndServices' })}
           </Pane>
           <Pane innerRef={rulesRef}>
-					Rules & Policies Section (for paging)
+            {formatMessage({ id: 'hotelPage.rulesAndPolicies' })}
             {/* Check in
 								Check out
 								Children and extra beds
