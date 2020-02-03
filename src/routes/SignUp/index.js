@@ -3,6 +3,7 @@ import {
   Pane, Heading, minorScale, Text, Paragraph, Dialog, Button,
 } from 'evergreen-ui';
 import React, { useState } from 'react';
+import { useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { emailSignUp, facebookSignUp, googleSignUp } from '../../services/auth';
@@ -13,6 +14,7 @@ import {
 } from './styles';
 
 export const SignUp = () => {
+  const { formatMessage } = useIntl();
   const history = useHistory();
   const dispatch = useDispatch();
   const [showPopup, setShowPopup] = useState(false);
@@ -50,36 +52,40 @@ export const SignUp = () => {
     <Container>
       <Panel>
         <Pane marginBottom={minorScale(4)}>
-          <Heading size={600}>Sign Up</Heading>
+          <Heading size={600}>
+            {formatMessage({ id: 'signUp.signUp' })}
+          </Heading>
         </Pane>
         <Pane marginBottom={minorScale(4)}>
           <Paragraph color="info">
-            Membership is free!  We charge no fee, of any kind.
+            {formatMessage({ id: 'signUp.freeMemebership' })}
           </Paragraph>
           <Paragraph color="info">
-          You can unsubscribe our membership any time (link is at bottom of our main page)
+            {formatMessage({ id: 'signUp.canUnsubscribe' })}
           </Paragraph>
         </Pane>
         <Pane width={250}>
           <Paragraph color="info">
-          Sign Via Facebook \ Google
+            {formatMessage({ id: 'signUp.social' })}
+
           </Paragraph>
           <SocialAuth centered={false} onFacebook={onFbAuthed} onGoogle={onGoogleAuthed} />
           <Paragraph color="info">
-          Sign With Email
+            {formatMessage({ id: 'signUp.email' })}
           </Paragraph>
           <EmailPassword onSubmit={onEmailSubmitted} label="Sign Up" centered={false} />
         </Pane>
         <Paragraph marginBottom={minorScale(4)}>
-          <Text>Already a member and we haven't recognized you?</Text>
-          <Link to="/signin">Sign In</Link>
+          <Text>
+            {formatMessage({ id: 'signUp.alreadyMember' })}
+          </Text>
+          <Link to="/signin">{formatMessage({ id: 'auth.signIn' })}</Link>
         </Paragraph>
         <Paragraph size={300} color="muted">
-        This site is using SSL technology. Your details are kept encypted
+          {formatMessage({ id: 'signUp.sslTechnology' })}
         </Paragraph>
         <Paragraph size={300} color="muted">
-        We'll use your email only to confirm registration or hotel reservation,
-        or to contact you in case of problem. No spam or 3rd party use.
+          {formatMessage({ id: 'signUp.emailUsage' })}
         </Paragraph>
         <Pane />
       </Panel>
@@ -90,22 +96,25 @@ export const SignUp = () => {
         hasHeader={false}
       >
         <Paragraph>
-We want to do good and give back to the community and Planet Earth,
+          {formatMessage({ id: 'signUp.doGood1' })}
+
         </Paragraph>
         <Paragraph marginBottom={minorScale(3)}>
-Hence we ask our members for a
+          {formatMessage({ id: 'signUp.doGood2' })}
+
+
           {' '}
-          <Text color="danger">one time</Text>
+          <Text color="danger">{formatMessage({ id: 'signUp.doGood3' })}</Text>
           {' '}
-purchase of portion of
+          {formatMessage({ id: 'signUp.doGood4' })}
           {' '}
-          <Text color="success">a tree that will be planted</Text>
+          <Text color="success">{formatMessage({ id: 'signUp.doGood5' })}</Text>
           {' '}
-At cost of 5 cents (0.05 Dollar or 0.05 Euro, depending on your location).
-You WILL NOT be charged now, but only when you make your first hotel reservation on Roomount
+          {formatMessage({ id: 'signUp.doGood6' })}
+
         </Paragraph>
         <Button appearance="primary" onClick={signup}>
-          {loading ? <StyledSpinner size={20} /> : 'I Agree, now got on'}
+          {loading ? <StyledSpinner size={20} /> : formatMessage({ id: 'signUp.iAgree' })}
         </Button>
       </Dialog>
     </Container>

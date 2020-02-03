@@ -112,4 +112,39 @@ export const FULL_HOTEL = {
     'http://react-responsive-carousel.js.org/assets/4.jpeg',
     'http://react-responsive-carousel.js.org/assets/5.jpeg',
   ],
+  roomTypes: [{
+    type: 'Double room',
+    rooms: [
+      {
+        id: '1',
+        maxAdults: 2,
+        pricePerNight: 150,
+        breakfastPrice: 0,
+        cancellationType: 'free',
+      }, {
+        id: '2',
+        maxAdults: 2,
+        pricePerNight: 150,
+        breakfastPrice: 30,
+        cancellationType: 'partial',
+      }, {
+        id: '3',
+        maxAdults: 2,
+        pricePerNight: 150,
+        breakfastPrice: 30,
+        cancellationType: 'none',
+      },
+    ],
+  }, {
+    type: 'Triple room',
+    rooms: [
+      {
+        id: '4',
+        maxAdults: 2,
+        pricePerNight: 150,
+        breakfastPrice: 0,
+        cancellationType: 'free',
+      },
+    ],
+  }],
 };

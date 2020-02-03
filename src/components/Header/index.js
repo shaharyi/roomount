@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 import {
   Text, Avatar, Popover, Menu, Position, minorScale, Heading,
@@ -19,6 +20,7 @@ export const Header = () => {
   const handleLogout = () => {
     dispatch(logOut(history));
   };
+  const { formatMessage } = useIntl();
 
   return (
     <Outer elevation={2}>
@@ -35,7 +37,7 @@ export const Header = () => {
                 content={(
                   <Menu>
                     <Menu.Item onSelect={handleLogout}>
-                        Sign Out
+                      {formatMessage({ id: 'auth.signOut' })}
                     </Menu.Item>
                   </Menu>
 )}
@@ -54,7 +56,7 @@ export const Header = () => {
             )
             : (
               <SignInButton onClick={goToLogin}>
-                <Text>Sign In</Text>
+                <Text>{formatMessage({ id: 'auth.signIn' })}</Text>
               </SignInButton>
             )}
         </UserInfo>

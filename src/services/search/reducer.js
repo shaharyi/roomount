@@ -7,6 +7,7 @@ const initialState = {
   results: HOTELS_MOCK,
   fullDetails: {
     loading: false,
+    nights: 3,
     info: null,
   },
 };

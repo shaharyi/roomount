@@ -1,52 +1,19 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import {
-  Text, Paragraph, Heading, Button, minorScale, Ul, Li,
+  Heading, Button, Ul, Li,
 } from 'evergreen-ui';
 import {
   Wrapper, Table, TableHeader, Row, Cell, NormalText,
 } from './styles';
 
 export const RoomsTable = () => {
-  const roomTypes = [{
-    type: 'Double room',
-    rooms: [
-      {
-        id: '1',
-        maxAdults: 2,
-        pricePerNight: 150,
-        breakfastPrice: 0,
-        cancellationType: 'free',
-      }, {
-        id: '2',
-        maxAdults: 2,
-        pricePerNight: 150,
-        breakfastPrice: 30,
-        cancellationType: 'partial',
-      }, {
-        id: '3',
-        maxAdults: 2,
-        pricePerNight: 150,
-        breakfastPrice: 30,
-        cancellationType: 'none',
-      },
-    ],
-  }, {
-    type: 'Triple room',
-    rooms: [
-      {
-        id: '4',
-        maxAdults: 2,
-        pricePerNight: 150,
-        breakfastPrice: 0,
-        cancellationType: 'free',
-      },
-    ],
-  }];
-  const nights = 3;
+  const { info, nights } = useSelector((state) => state.search.fullDetails);
+  const { roomTypes } = info;
 
   const getRefundElement = (type) => {
     switch (type) {
-      case 'free': return 'No prepayment. Pay when you stay!';
+      case 'free': return <NormalText>No prepayment. Pay when you stay!</NormalText>;
       case 'partial': return (
         <NormalText className="tooltip-base" size={200}>
           <NormalText>Partially refundable</NormalText>
@@ -82,12 +49,14 @@ export const RoomsTable = () => {
               <Cell>
                 <Ul>
                   <Li>
-                    {room.breakfastPrice === 0
-                      ? 'Breakfast Included !'
-                      : `Breakfast available at total cost of $${room.breakfastPrice}`}
+                    <NormalText>
+                      {room.breakfastPrice === 0
+                        ? 'Breakfast Included !'
+                        : `Breakfast available at total cost of $${room.breakfastPrice}`}
+                    </NormalText>
                   </Li>
                   <Li>
-                    {`Free cancellation before midnight of ${Date.now()}`}
+                    <NormalText>{`Free cancellation before midnight of ${new Date().toLocaleDateString()}`}</NormalText>
                   </Li>
                   <Li>
                     {getRefundElement(room.cancellationType)}

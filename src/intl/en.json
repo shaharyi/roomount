@@ -1,0 +1,24 @@
+{
+  "auth": {
+    "signIn": "Sign In",
+    "signOut": "Sign Out"
+  },
+  "signUp":{
+    "signUp":"Sign Up",
+    "freeMemebership":"Membership is free!  We charge no fee, of any kind.",
+    "canUnsubscribe":"You can unsubscribe our membership any time (link is at bottom of our main page)",
+    "social":"Sign Via Facebook \\ Google",
+    "email":"Sign With Email",
+    "alreadyMember":"Already a member and we haven't recognized you?",
+    "sslTechnology":"This site is using SSL technology. Your details are kept encypted",
+    "emailUsage":"We'll use your email only to confirm registration or hotel reservation, or to contact you in case of problem. No spam or 3rd party use.",
+    "doGood1":"We want to do good and give back to the community and Planet Earth,",
+    "doGood2":"Hence we ask our members for a",
+    "doGood3":"one time",
+    "doGood4":"purchase of portion of",
+    "doGood5":"a tree that will be planted",
+    "doGood6":"At cost of 5 cents (0.05 Dollar or 0.05 Euro, depending on your location). You WILL NOT be charged now, but only when you make your first hotel reservation on Roomount",
+    "iAgree":"I Agree, now got on"
+  },
+  "simple": "Hello world"
+}

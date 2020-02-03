@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useIntl } from 'react-intl';
 import {
   Pane, Heading, minorScale,
 } from 'evergreen-ui';
@@ -14,6 +15,7 @@ import {
 export const SignIn = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const { formatMessage } = useIntl();
 
 
   const onEmailSubmitted = (email, password) => {
@@ -28,14 +30,15 @@ export const SignIn = () => {
   };
 
   return (
+
     <Container>
       <Panel>
         <Pane marginBottom={minorScale(4)}>
-          <Heading size={600}>Sign in</Heading>
+          <Heading size={600}>{formatMessage({ id: 'auth.signIn' })}</Heading>
         </Pane>
         <SocialAuth centered onFacebook={onFbAuthed} onGoogle={onGoogleAuthed} />
         <Heading />
-        <EmailPassword centered onSubmit={onEmailSubmitted} label="Sign In" />
+        <EmailPassword centered onSubmit={onEmailSubmitted} label={formatMessage({ id: 'auth.signIn' })} />
         <Pane />
       </Panel>
     </Container>
