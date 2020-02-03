@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useIntl } from 'react-intl';
 import {
   SegmentedControl, Heading,
 } from 'evergreen-ui';
@@ -18,6 +19,7 @@ const SEARCH_OPTIONS = {
 };
 
 export const SideSearch = () => {
+  const { formatMessage } = useIntl();
   const dispatch = useDispatch();
   const history = useHistory();
   const [searchOption, setSearchOption] = useState(SEARCH_OPTIONS.HOTEL);
@@ -25,13 +27,13 @@ export const SideSearch = () => {
     dispatch(searchHotels(searchTerms, history));
   };
   const options = [
-    { label: 'Specific Hotel', value: SEARCH_OPTIONS.HOTEL },
-    { label: 'Location', value: SEARCH_OPTIONS.LOCATION },
+    { label: formatMessage({ id: 'search.specific' }), value: SEARCH_OPTIONS.HOTEL },
+    { label: formatMessage({ id: 'search.location' }), value: SEARCH_OPTIONS.LOCATION },
   ];
   return (
     <div>
       <SectionContainer>
-        <Heading>Search by</Heading>
+        <Heading>{formatMessage({ id: 'search.searchBy' })}</Heading>
       </SectionContainer>
       <SectionContainer>
         <SegmentedControl

@@ -5,7 +5,7 @@
   },
   "signUp":{
     "signUp":"Sign Up",
-    "freeMemebership":"Membership is free!  We charge no fee, of any kind.",
+    "freeMembership":"Membership is free!  We charge no fee, of any kind.",
     "canUnsubscribe":"You can unsubscribe our membership any time (link is at bottom of our main page)",
     "social":"Sign Via Facebook \\ Google",
     "email":"Sign With Email",
@@ -20,5 +20,95 @@
     "doGood6":"At cost of 5 cents (0.05 Dollar or 0.05 Euro, depending on your location). You WILL NOT be charged now, but only when you make your first hotel reservation on Roomount",
     "iAgree":"I Agree, now got on"
   },
-  "simple": "Hello world"
+  "search":{
+    "searchBy":"Search by",
+    "specific":"Specific Hotel",
+    "location":"Location",
+    "getBestPrices":"Get best prices",
+    "hotelNamePlaceHolder":"Hotel name",
+    "nightsStay": "{nights, plural, one {# - night} other {# - nights}} stay"
+  },
+  "filters":{
+    "title":"Filters",
+    "common": {
+      "title": "Common",
+      "breakfast_included": "Breakfast Included",
+      "free_cancellation": "Free Cancellation",
+      "free_wifi": "Free WiFi"
+    },
+    "price": {
+      "title": "Price",
+      "price_0": "0-50$",
+      "price_1": "50 -100$",
+      "price_2": "100-150$",
+      "price_3": "150-200$",
+      "price_4": "200$+"
+    },
+    "stars": {
+      "title": "Stars Rating",
+      "stars_0": "1 star",
+      "stars_1": "2 stars",
+      "stars_2": "3 stars",
+      "stars_3": "4 stars",
+      "stars_4": "5 stars"
+    },
+    "distance": {
+      "title": "Distance from Center",
+      "distance_0": "Less than 1 km",
+      "distance_1": "Less than 3 km",
+      "distance_2": "more than 3 km"
+    },
+    "score": {
+      "title": "Review score",
+      "score_0": "At least 3",
+      "score_1": "At least 3.5",
+      "score_2": "At least 4",
+      "score_3": "At least 4.5"
+    },
+    "facilities": {
+      "title": "Property Facilities",
+      "restaurant": "Restaurant",
+      "pets allowed": "pets allowed",
+      "fitness room": "Fitness room",
+      "sauna": "Sauna",
+      "hotels only": "Hotels only",
+      "parking": "Parking",
+      "free parking": "Free parking",
+      "spa": "spa",
+      "welness center": "welness center",
+      "pool": "pool",
+      "indoor pool": "indoor pool",
+      "24/7 frontdesk": "24/7 frontdesk",
+      "beach access": "beach access",
+      "full board meals": "full board meals",
+      "half board neals": "half board neals",
+      "non-smoking rooms": "Non-smoking rooms",
+      "family rooms": "family rooms",
+      "airport shuttle": "airport shuttle",
+      "lounge": "lounge",
+      "disabled guests facilities": "Disabled guests facilities",
+      "room service": "room service",
+      "laundry service": "laundry service",
+      "business centre": "business centre",
+      "elevator": "Elevator",
+      "free wifi in all areas": "free WiFi in all areas",
+      "paid wifi": "paid WiFi",
+      "bar": "Bar",
+      "concierge service": "Concierge Service",
+      "allergy free room": "Allergy free room"
+    },
+    "amenities": {
+      "title": "Room Facilities / Amenities",
+      "bath": "Bath",
+      "private bathroom": "Private bathroom",
+      "kitchen/kitchenette": "kitchen/kitchenette",
+      "air conditioning": "air conditioning",
+      "view": "view",
+      "soundproofing": "soundproofing",
+      "electric kettle": "electric kettle",
+      "coffee/tea maker": "Coffee/tea maker",
+      "safety deposit box": "safety deposit box",
+      "heating": "heating"
+    }
+  }
 }

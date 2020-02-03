@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { DateRangePicker } from 'react-dates';
+import { useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import {
   Button, Paragraph, minorScale,
@@ -8,6 +9,7 @@ import { AutosuggestInput } from './AutoSuggestInput';
 import { DateRangePickerWrapper } from './styles';
 
 export const SearchByHotel = ({ onSearch }) => {
+  const { formatMessage } = useIntl();
   const [searchString, setSearchString] = useState('');
   const [startDateState, setStartDate] = useState(null);
   const [endDateState, setEndDate] = useState(null);
@@ -28,10 +30,9 @@ export const SearchByHotel = ({ onSearch }) => {
   const onAutoSuggestChange = ({ value, valid }) => {
     setSearchString(valid ? value : '');
   };
-  const getNightsStayTest = () => {
+  const getNightsStay = () => {
     const nights = endDateState.diff(startDateState, 'days');
-    const nightsText = nights === 1 ? 'night' : 'nights';
-    return `${nights}-${nightsText} stay`;
+    return formatMessage({ id: 'search.nightsStay' }, { nights });
   };
 
   return (
@@ -53,13 +54,13 @@ export const SearchByHotel = ({ onSearch }) => {
         />
         {startDateState && endDateState && (
           <Paragraph>
-            {getNightsStayTest()}
+            {getNightsStay()}
           </Paragraph>
         ) }
       </DateRangePickerWrapper>
 
       <Button type="submit" form="search_hotels" value="Submit" appearance="primary">
-Get best prices
+        {formatMessage({ id: 'search.getBestPrices' })}
       </Button>
 
     </form>

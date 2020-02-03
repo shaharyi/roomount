@@ -58,7 +58,7 @@ export const SignUp = () => {
         </Pane>
         <Pane marginBottom={minorScale(4)}>
           <Paragraph color="info">
-            {formatMessage({ id: 'signUp.freeMemebership' })}
+            {formatMessage({ id: 'signUp.freeMembership' })}
           </Paragraph>
           <Paragraph color="info">
             {formatMessage({ id: 'signUp.canUnsubscribe' })}

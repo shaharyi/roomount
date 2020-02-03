@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Autocomplete, TextInput } from 'evergreen-ui';
+import { useIntl } from 'react-intl';
 
 const hotelNames = [
   'Coooo1',
@@ -16,6 +17,7 @@ const getSuggestions = (value) => {
 };
 
 export const AutosuggestInput = ({ onChange }) => {
+  const { formatMessage } = useIntl();
   const [suggestions, setSuggestions] = useState([]);
   const onChangeInner = (newValue) => {
     onChange({ value: newValue, valid: suggestions.includes(newValue) });
@@ -38,7 +40,7 @@ export const AutosuggestInput = ({ onChange }) => {
         return (
           <TextInput
             width="100%"
-            placeholder="Hotel name"
+            placeholder={formatMessage({ id: 'search.getBestPrices' })}
             value={inputValue}
             innerRef={getRef}
 

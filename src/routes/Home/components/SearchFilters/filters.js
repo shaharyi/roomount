@@ -109,3 +109,16 @@ export const filtersState = Object.values(allFiltersObject)
     acc[value] = false;
     return acc;
   }, {});
+
+
+const redFunction = (acc, current) => {
+  acc[current.value] = current.label;
+  return acc;
+};
+
+// used to generate the filters intl json
+export const intlKeys = Object.keys(allFiltersObject).reduce((acc, current) => {
+  acc[current] = allFiltersObject[current].options
+    .reduce(redFunction, { title: allFiltersObject[current].label });
+  return acc;
+}, { title: 'Filters' });
