@@ -2,16 +2,23 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
+import ReactFlagsSelect from 'react-flags-select';
 import {
   Text, Avatar, Popover, Menu, Position, minorScale, Heading,
 } from 'evergreen-ui';
 import { logOut } from '../../services/auth';
 import {
-  Outer, Wrapper, UserInfo, LogoWrapper, AvatarContainer, SignInButton,
+  Outer, Wrapper, UserInfo, LogoWrapper, AvatarContainer, SignInButton, FloatRight,
 } from './styles';
+import { setLocale } from '../../intl/actions';
+
+const countryToLang = {
+  US: 'en',
+  ES: 'es',
+};
 
 export const Header = () => {
-  const { auth: { user } } = useSelector((state) => state);
+  const { auth: { user }, intl: { locale } } = useSelector((state) => state);
   const history = useHistory();
   const dispatch = useDispatch();
   const goToLogin = () => {
@@ -20,8 +27,11 @@ export const Header = () => {
   const handleLogout = () => {
     dispatch(logOut(history));
   };
+  const country = Object.keys(countryToLang).find((key) => countryToLang[key] === locale);
   const { formatMessage } = useIntl();
-
+  const changeLocale = (selectedCountry) => {
+    dispatch(setLocale(countryToLang[selectedCountry]));
+  };
   return (
     <Outer elevation={2}>
       <Wrapper>
@@ -29,6 +39,15 @@ export const Header = () => {
           <Heading>Roomount</Heading>
           <Text size={300}>Same room, better price.</Text>
         </LogoWrapper>
+        <FloatRight>
+          <ReactFlagsSelect
+            defaultCountry={country}
+            onSelect={changeLocale}
+            countries={Object.keys(countryToLang)}
+            showSelectedLabel={false}
+            showOptionLabel={false}
+          />
+        </FloatRight>
         <UserInfo>
           {user
             ? (

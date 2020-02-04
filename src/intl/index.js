@@ -1,5 +1,6 @@
 import './reducer';
-import en from './en.json';
+import en from './us.json';
+import es from './es.json';
 
 export const flattenMessages = ((nestedMessages, prefix = '') => {
   if (nestedMessages === null) {
@@ -21,4 +22,5 @@ export const flattenMessages = ((nestedMessages, prefix = '') => {
 
 export const messages = {
   en: flattenMessages(en),
+  es: flattenMessages(es),
 };

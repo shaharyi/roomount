@@ -12,6 +12,7 @@ import { messages } from './intl';
 
 function App() {
   const { locale } = useSelector((state) => state.intl);
+  console.log(locale, messages);
   return (
     <IntlProvider locale={locale} messages={messages[locale]}>
       <Router>

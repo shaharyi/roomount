@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-  Pane, Heading, Text, Button,
+  Pane, Button,
 } from 'evergreen-ui';
 
 export const Outer = styled(Pane).attrs(({ theme }) => ({
@@ -22,6 +22,9 @@ height:60px;
 align-items:center;
 `;
 
+export const FloatRight = styled.div`
+margin-left:auto;
+`;
 export const LogoWrapper = styled(Pane)`
 display:flex;
 flex-direction:column;
@@ -54,5 +57,5 @@ span{
 `;
 
 export const UserInfo = styled(Pane)`
-margin-left:auto;
+
 `;

@@ -7687,6 +7687,12 @@ react-facebook-login@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/react-facebook-login/-/react-facebook-login-4.1.1.tgz#005121236a6ac0dee02099976fb1a3265f9d633e"
 
+react-flags-select@^1.1.10:
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/react-flags-select/-/react-flags-select-1.1.10.tgz#3ad8bd8bbc8ef206bb41d2fa3ac90f522826dbda"
+  dependencies:
+    prop-types "^15.5.8"
+
 react-google-login@^5.0.7:
   version "5.0.7"
   resolved "https://registry.yarnpkg.com/react-google-login/-/react-google-login-5.0.7.tgz#6f4f117a234c6eca3132773ad051d1a36c95204d"

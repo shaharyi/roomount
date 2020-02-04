@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
 import { defaultTheme } from 'evergreen-ui';
+import 'react-flags-select/css/react-flags-select.css';
 import { getStore } from './reduxUtils/store';
 import './index.css';
 import App from './App';

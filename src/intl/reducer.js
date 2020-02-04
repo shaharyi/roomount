@@ -7,6 +7,7 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_LOCALE': {
+      console.log(state);
       return { locale: action.locale };
     }
     default:
