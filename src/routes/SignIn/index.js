@@ -6,8 +6,8 @@ import {
   Pane, Heading, minorScale,
 } from 'evergreen-ui';
 import { emailSignIn, facebookSignIn, googleSignIn } from '../../services/auth';
-import { EmailPassword } from '../../shared/components/EmailPassword';
-import { SocialAuth } from '../../shared/components/SocialAuth';
+import { EmailPassword } from '../../shared/Components/EmailPassword';
+import { SocialAuth } from '../../shared/Components/SocialAuth';
 import {
   Container, Panel,
 } from './styles';

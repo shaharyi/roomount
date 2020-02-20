@@ -2,8 +2,8 @@
 import {
   TextInput, Button, minorScale,
 } from 'evergreen-ui';
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from './node_modules/react';
+import PropTypes from './node_modules/prop-types';
 import { Form } from './styles';
 
 export const EmailPassword = ({ centered, onSubmit, label }) => {

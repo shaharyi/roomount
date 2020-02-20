@@ -7,8 +7,8 @@ import { useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { emailSignUp, facebookSignUp, googleSignUp } from '../../services/auth';
-import { EmailPassword } from '../../shared/components/EmailPassword';
-import { SocialAuth } from '../../shared/components/SocialAuth';
+import { EmailPassword } from '../../shared/Components/EmailPassword';
+import { SocialAuth } from '../../shared/Components/SocialAuth';
 import {
   Container, Panel, StyledSpinner,
 } from './styles';
