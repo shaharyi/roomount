@@ -30,16 +30,6 @@ export const SideSearch = () => {
     { label: formatMessage({ id: 'search.specific' }), value: SEARCH_OPTIONS.HOTEL },
     { label: formatMessage({ id: 'search.location' }), value: SEARCH_OPTIONS.LOCATION },
   ];
-  const myHeaders = new Headers({
-    'Content-Type': 'application/json',
-    'x-roomount-token': 'Some_token',
-  });
-  fetch('https://www.google.com/get_hotels', {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: myHeaders,
-    body: JSON.stringify({ query: 'wonderful hote' }), // body data type must match "Content-Type" header
-  });
   return (
     <div>
       <SectionContainer>
