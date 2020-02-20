@@ -66,6 +66,13 @@
       "partial":"Partially refundable",
       "partialTooltip":"first night cost will be charged in case you cancel this reservation",
       "none":"Non Refundable"
+    },
+    "rulesAndPoliciesInfo": {
+      "checkIn":"Check in",
+      "checkOut":"Check out",
+      "childrenAndExtraBeds":"Children and extra beds",
+      "pets":"Pets",
+      "acceptedCards":"Accepted cards"
     }
   },
   "filters":{

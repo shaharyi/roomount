@@ -9,8 +9,10 @@ import {
   Pane, Spinner, Text, Paragraph, Heading, Button, minorScale,
 } from 'evergreen-ui';
 import { StarsCount } from '../StarsCount';
-import { HotelInfo, HotelInfoList } from './styles';
+import { HotelInfo, HotelInfoList, SectionWrapper } from './styles';
 import { RoomsTable } from './RoomsTable';
+import { Facilities } from './Facilities';
+import { RulesAndPolicies } from './RulesAndPolicies';
 
 export const HotelPage = () => {
   const { formatMessage } = useIntl();
@@ -83,21 +85,23 @@ export const HotelPage = () => {
               {info.description}
             </Paragraph>
           </Pane>
-          <Pane innerRef={roomsRef}>
-            <RoomsTable />
-          </Pane>
-          <Pane innerRef={facilitiesRef}>
-            {formatMessage({ id: 'hotelPage.facilitiesAndServices' })}
-          </Pane>
-          <Pane innerRef={rulesRef}>
-            {formatMessage({ id: 'hotelPage.rulesAndPolicies' })}
-            {/* Check in
-								Check out
-								Children and extra beds
-								Pets
-								Accepted cards
-							*/}
-          </Pane>
+          <div ref={roomsRef}>
+            <SectionWrapper>
+              <RoomsTable />
+            </SectionWrapper>
+          </div>
+          <div ref={facilitiesRef}>
+            <SectionWrapper>
+              {formatMessage({ id: 'hotelPage.facilitiesAndServices' })}
+              <Facilities />
+            </SectionWrapper>
+          </div>
+          <div ref={rulesRef}>
+            <SectionWrapper>
+              {formatMessage({ id: 'hotelPage.rulesAndPolicies' })}
+              <RulesAndPolicies />
+            </SectionWrapper>
+          </div>
         </Pane>
       )}
     </div>
