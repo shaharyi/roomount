@@ -2,10 +2,10 @@
 import {
   Text,
 } from 'evergreen-ui';
-import React from './node_modules/react';
-import PropTypes from './node_modules/prop-types';
-import { GoogleLogin } from './node_modules/react-google-login';
-import FacebookLogin from './node_modules/react-facebook-login/dist/facebook-login-render-props';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { SocialWrapper, SocialButton, SocialIcon } from './styles';
 import FB_SVG from './images/fb.svg';
 import GOOGLE_SVG from './images/google.svg';

@@ -1,7 +1,7 @@
 import {
   Pane, minorScale, Button,
 } from 'evergreen-ui';
-import styled from './node_modules/styled-components';
+import styled from 'styled-components';
 
 export const SocialWrapper = styled(Pane)
   .attrs(() => ({
