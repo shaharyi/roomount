@@ -2,11 +2,14 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import {
-  Heading, Button, Ul, Li,
+  Heading, Button, Ul, Li, Select,
 } from 'evergreen-ui';
 import {
   Wrapper, Table, TableHeader, Row, Cell, NormalText,
 } from './styles';
+import { StickyReserveButton } from './StickyReserveButton';
+
+const options = (new Array(9).fill()).map((a, index) => index);
 
 export const RoomsTable = () => {
   const { formatMessage } = useIntl();
@@ -31,6 +34,7 @@ export const RoomsTable = () => {
   };
   return (
     <Wrapper>
+
       <Heading>
         {formatMessage({ id: 'hotelPage.roomsAndPrices' })}
       </Heading>
@@ -92,9 +96,18 @@ export const RoomsTable = () => {
                 </Ul>
               </Cell>
               <Cell flexBasis={90} flexShrink={0} flexGrow={0}>
-                <Button appearance="primary">
-                  {formatMessage({ id: 'hotelPage.reserve' })}
-                </Button>
+                <Select onChange={(event) => alert(event.target.value)}>
+                  {options.map(((count) => <option key={count} value={count}>{count}</option>))}
+                </Select>
+              </Cell>
+              <Cell flexBasis={90} flexShrink={0} flexGrow={0}>
+                {typeIndex === 0 && index === 0 && (
+                <StickyReserveButton stickAt={75}>
+                  <Button appearance="primary">
+                    {formatMessage({ id: 'hotelPage.reserve' })}
+                  </Button>
+                </StickyReserveButton>
+                )}
               </Cell>
             </Row>
           ));

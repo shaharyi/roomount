@@ -28,7 +28,7 @@ export const Table = styled.div`
 `;
 export const Row = styled.div`
 display:grid;
-grid-template-columns:100px 90px 130px auto 90px;
+grid-template-columns:100px 90px 90px auto 90px 100px;
 ${({ highlight }) => highlight && 'background-color:rgba(0,0,0,0.05);'}
 border-bottom:solid 1px rgba(0,0,0,0.1);;
 `;

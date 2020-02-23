@@ -8,6 +8,7 @@ import { Carousel } from 'react-responsive-carousel';
 import {
   Pane, Spinner, Text, Paragraph, Heading, Button, minorScale,
 } from 'evergreen-ui';
+import { StickyContainer, Sticky } from 'react-sticky';
 import { StarsCount } from '../StarsCount';
 import { HotelInfo, HotelInfoList, SectionWrapper } from './styles';
 import { RoomsTable } from './RoomsTable';
