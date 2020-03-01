@@ -11,27 +11,27 @@ import { DateRangePickerWrapper } from './styles';
 export const SearchByHotel = ({ onSearch }) => {
   const { formatMessage } = useIntl();
   const [searchString, setSearchString] = useState('');
-  const [startDateState, setStartDate] = useState(null);
-  const [endDateState, setEndDate] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
   const [focusedInput, setFocusedInput] = useState(null);
 
-  const isFormValid = () => startDateState != null
-  && endDateState != null
-  && startDateState < endDateState
+  const isFormValid = () => startDate != null
+  && endDate != null
+  && startDate < endDate
   && !!searchString;
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('submit', startDateState != null, endDateState != null, startDateState < endDateState, !!searchString);
+    console.log('submit', startDate != null, endDate != null, startDate < endDate, !!searchString);
 
     if (isFormValid()) {
-      onSearch({ startDateState, endDateState, searchString });
+      onSearch({ startDate, endDate, searchString });
     }
   };
   const onAutoSuggestChange = ({ value, valid }) => {
     setSearchString(valid ? value : '');
   };
   const getNightsStay = () => {
-    const nights = endDateState.diff(startDateState, 'days');
+    const nights = endDate.diff(startDate, 'days');
     return formatMessage({ id: 'search.nightsStay' }, { nights });
   };
 
@@ -41,9 +41,9 @@ export const SearchByHotel = ({ onSearch }) => {
       <DateRangePickerWrapper marginBottom={minorScale(2)}>
         <DateRangePicker
           showDefaultInputIcon
-          startDate={startDateState} // momentPropTypes.momentObj or null,
+          startDate={startDate} // momentPropTypes.momentObj or null,
           startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-          endDate={endDateState} // momentPropTypes.momentObj or null,
+          endDate={endDate} // momentPropTypes.momentObj or null,
           endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
           onDatesChange={({ startDate, endDate }) => {
             setStartDate(startDate);
@@ -52,7 +52,7 @@ export const SearchByHotel = ({ onSearch }) => {
           focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
           onFocusChange={(focusedInputString) => setFocusedInput(focusedInputString)}
         />
-        {startDateState && endDateState && (
+        {startDate && endDate && (
           <Paragraph>
             {getNightsStay()}
           </Paragraph>

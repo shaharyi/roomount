@@ -1,37 +1,54 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useIntl } from 'react-intl';
 import {
   Heading, Button, Ul, Li, Select,
 } from 'evergreen-ui';
+import { useHistory } from 'react-router-dom';
 import {
   Wrapper, Table, TableHeader, Row, Cell, NormalText,
 } from './styles';
 import { StickyReserveButton } from './StickyReserveButton';
+import '../../../../../services/reservation';
+
 
 const options = (new Array(9).fill()).map((a, index) => index);
+export const RefundElement = (type) => {
+  const { formatMessage } = useIntl();
+  switch (type) {
+    case 'free': return (
+      <NormalText>
+        {formatMessage({ id: 'hotelPage.refund.free' })}
+      </NormalText>
+    );
+    case 'partial': return (
+      <NormalText className="tooltip-base" size={200}>
+        <NormalText>{formatMessage({ id: 'hotelPage.refund.partial' })}</NormalText>
+        <NormalText className="tooltip" size={200}>{formatMessage({ id: 'hotelPage.refund.partialTooltip' })}</NormalText>
+      </NormalText>
+    );
+    default: return <NormalText>{formatMessage({ id: 'hotelPage.refund.none' })}</NormalText>;
+  }
+};
 
 export const RoomsTable = () => {
   const { formatMessage } = useIntl();
-  const { info, nights } = useSelector((state) => state.search.fullDetails);
+  const { search: { fullDetails: { info, nights } }, reservation } = useSelector((state) => state);
   const { roomTypes } = info;
-
-  const getRefundElement = (type) => {
-    switch (type) {
-      case 'free': return (
-        <NormalText>
-          {formatMessage({ id: 'hotelPage.refund.free' })}
-        </NormalText>
-      );
-      case 'partial': return (
-        <NormalText className="tooltip-base" size={200}>
-          <NormalText>{formatMessage({ id: 'hotelPage.refund.partial' })}</NormalText>
-          <NormalText className="tooltip" size={200}>{formatMessage({ id: 'hotelPage.refund.partialTooltip' })}</NormalText>
-        </NormalText>
-      );
-      default: return <NormalText>{formatMessage({ id: 'hotelPage.refund.none' })}</NormalText>;
+  const dispatch = useDispatch();
+  const history = useHistory();
+  useEffect(() => {
+    if (reservation.hotelId !== info.id) {
+      dispatch({ type: 'SET_HOTEL_ID', payload: { hotelId: info.id } });
     }
+  }, [info]);
+  const setRoomCount = (roomId, count) => {
+    dispatch({ type: 'SET_ROOM', payload: { roomId, count } });
   };
+  const reserveClicked = () => {
+    history.push('/reserve');
+  };
+
   return (
     <Wrapper>
 
@@ -91,19 +108,32 @@ export const RoomsTable = () => {
                     <NormalText>{`Free cancellation before midnight of ${new Date().toLocaleDateString()}`}</NormalText>
                   </Li>
                   <Li>
-                    {getRefundElement(room.cancellationType)}
+                    <RefundElement type={room.cancellationType} />
                   </Li>
                 </Ul>
               </Cell>
+
               <Cell flexBasis={90} flexShrink={0} flexGrow={0}>
-                <Select onChange={(event) => alert(event.target.value)}>
-                  {options.map(((count) => <option key={count} value={count}>{count}</option>))}
+                <Select onChange={(event) => setRoomCount(room.id, event.target.value)}>
+                  {options.map(((count) => (
+                    <option
+                      key={count}
+                      value={count}
+                      selected={reservation && count === reservation[room.id]}
+                    >
+                      {count}
+                    </option>
+                  )))}
                 </Select>
               </Cell>
               <Cell flexBasis={90} flexShrink={0} flexGrow={0}>
                 {typeIndex === 0 && index === 0 && (
                 <StickyReserveButton stickAt={75}>
-                  <Button appearance="primary">
+                  <Button
+                    appearance="primary"
+                    onClick={reserveClicked}
+                    disabled={Object.keys(reservation.rooms).length === 0}
+                  >
                     {formatMessage({ id: 'hotelPage.reserve' })}
                   </Button>
                 </StickyReserveButton>

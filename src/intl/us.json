@@ -3,6 +3,20 @@
     "signIn": "Sign In",
     "signOut": "Sign Out"
   },
+  "reservation":{
+    "title":"Reservation Summary",
+    "reservationNumber": "Reservation #",
+    "checkIn": "Check in",
+    "checkOut": "Check out",
+    "totalStayPrice": "Total stay price",
+    "orderDetails": "Order details:",
+    "roomNumber":"Room Order #",
+    "roomPrice":"Stay Price",
+    "roomType":"Room Type",
+    "numberOfRooms":"Number of rooms",
+    "breakfastIncluded":"Breakfast included",
+    "cancelAllowed":"Cancel allowed"
+  },
   "signUp":{
     "signUp":"Sign Up",
     "freeMembership":"Membership is free!  We charge no fee, of any kind.",

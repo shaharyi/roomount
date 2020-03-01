@@ -2,7 +2,8 @@ import './reducer';
 import { HOTELS_MOCK, FULL_HOTEL } from './mockHotels';
 
 export const searchHotels = (options, history) => async (dispatch) => {
-  dispatch({ type: 'GET_RESULTS' });
+  const { startDate, endDate, searchString } = options;
+  dispatch({ type: 'GET_RESULTS', searchDetails: options });
   await new Promise((resolve) => setTimeout(resolve, 500));
   dispatch({ type: 'SET_RESULTS', data: HOTELS_MOCK });
   history.push('/');

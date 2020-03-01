@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 
 
 export const StickyReserveButton = ({ stickAt, children }) => {
@@ -24,4 +25,10 @@ export const StickyReserveButton = ({ stickAt, children }) => {
       </div>
     </div>
   );
+};
+
+
+StickyReserveButton.propTypes = {
+  stickAt: PropTypes.number.isRequired,
+  children: PropTypes.node.isRequired,
 };

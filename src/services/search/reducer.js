@@ -5,6 +5,7 @@ const initialState = {
   isLoading: false,
   viewedHotel: null,
   results: HOTELS_MOCK,
+  searchDetails: null,
   fullDetails: {
     loading: false,
     nights: 3,
@@ -31,6 +32,7 @@ export const reducer = (state = initialState, action) => {
     case 'GET_RESULTS': {
       return {
         ...state,
+        searchDetails: action.searchDetails,
         isLoading: true,
       };
     }
