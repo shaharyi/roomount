@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   Pane, Button,
 } from 'evergreen-ui';
@@ -14,6 +15,10 @@ top: 0;
 z-index: 10;
 `;
 
+export const Link = styled(RouterLink)`
+text-decoration:none;
+`;
+
 export const Wrapper = styled(Pane)`
 max-width:1024px;
 margin:auto;
@@ -27,6 +32,7 @@ margin-left:auto;
 `;
 export const LogoWrapper = styled(Pane)`
 display:flex;
+text-decoration:none;
 flex-direction:column;
 span, h2 {
 color:${({ theme }) => theme.palette.blue.lightest};

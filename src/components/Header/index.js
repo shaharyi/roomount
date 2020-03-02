@@ -8,7 +8,7 @@ import {
 } from 'evergreen-ui';
 import { logOut } from '../../services/auth';
 import {
-  Outer, Wrapper, UserInfo, LogoWrapper, AvatarContainer, SignInButton, FloatRight,
+  Outer, Wrapper, UserInfo, LogoWrapper, AvatarContainer, SignInButton, FloatRight, Link,
 } from './styles';
 import { setLocale } from '../../intl/actions';
 
@@ -35,10 +35,12 @@ export const Header = () => {
   return (
     <Outer elevation={2}>
       <Wrapper>
-        <LogoWrapper>
-          <Heading>Roomount</Heading>
-          <Text size={300}>Same room, better price.</Text>
-        </LogoWrapper>
+        <Link to="/">
+          <LogoWrapper>
+            <Heading>Roomount</Heading>
+            <Text size={300}>Same room, better price.</Text>
+          </LogoWrapper>
+        </Link>
         <FloatRight>
           <ReactFlagsSelect
             defaultCountry={country}
