@@ -41,7 +41,7 @@ export const RoomsTable = () => {
     if (reservation.hotelId !== info.id) {
       dispatch({ type: 'SET_HOTEL_ID', payload: { hotelId: info.id } });
     }
-  }, [info]);
+  }, [info, dispatch, reservation]);
   const setRoomCount = (roomId, count) => {
     dispatch({ type: 'SET_ROOM', payload: { roomId, count } });
   };

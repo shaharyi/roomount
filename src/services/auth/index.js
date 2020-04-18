@@ -29,8 +29,8 @@ export const emailSignIn = (email, password, history) => async (dispatch) => {
   try {
     const user = await login(email, password);
     console.log(user);
-    // dispatch({ type: 'SET_USER', user });
-    // history.push('/');
+    dispatch({ type: 'SET_USER', user });
+    history.push('/');
   } catch (e) {
     console.error(e);
     dispatch({ type: 'LOG_IN_ERROR', data: e.message });
@@ -45,7 +45,6 @@ export const facebookSignIn = (fbUser, history) => async (dispatch) => {
   } = fbUser;
   console.log('/auth/facebookSignIn', fbUser);
   await new Promise((resolve) => setTimeout(resolve, 2000));
-  return;
   dispatch({ type: 'SET_USER', user: { name, avatar: picture.data.url } });
   history.push('/');
 };
@@ -65,7 +64,6 @@ export const googleSignIn = (googleUser, history) => async (dispatch) => {
 export const emailSignUp = (email, password, history) => async (dispatch) => {
   dispatch({ type: 'LOG_IN' });
   console.log('/auth/emailSignUp');
-  console.log('Getting user from', email, password);
   const user = { name: 'Some Name', avatar: 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png' };
   await new Promise((resolve) => setTimeout(resolve, 2000));
   dispatch({ type: 'SET_USER', user });

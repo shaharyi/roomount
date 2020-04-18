@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Autocomplete, TextInput } from 'evergreen-ui';
 import { useIntl } from 'react-intl';
-import { getHotels } from '../../../../../services/search';
+// import { getHotels } from '../../../../../services/search';
 
 
 const hotelNames = [
