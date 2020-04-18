@@ -1,9 +1,9 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import {
-  Pane, Heading, minorScale,
+  Pane, Heading, minorScale, Paragraph,
 } from 'evergreen-ui';
 import { emailSignIn, facebookSignIn, googleSignIn } from '../../services/auth';
 import { EmailPassword } from '../../shared/Components/EmailPassword';
@@ -14,6 +14,7 @@ import {
 
 export const SignIn = () => {
   const history = useHistory();
+  const { error } = useSelector(({ auth }) => auth);
   const dispatch = useDispatch();
   const { formatMessage } = useIntl();
 
@@ -38,7 +39,15 @@ export const SignIn = () => {
         </Pane>
         <SocialAuth centered onFacebook={onFbAuthed} onGoogle={onGoogleAuthed} />
         <Heading />
-        <EmailPassword centered onSubmit={onEmailSubmitted} label={formatMessage({ id: 'auth.signIn' })} />
+        <EmailPassword
+          error={!!error}
+          centered
+          onSubmit={onEmailSubmitted}
+          label={formatMessage({ id: 'auth.signIn' })}
+        />
+        <Paragraph color="red">
+          {error}
+        </Paragraph>
         <Pane />
       </Panel>
     </Container>

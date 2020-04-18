@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-  Pane, minorScale,
+  Pane, minorScale, Paragraph,
 } from 'evergreen-ui';
 
 export const Container = styled(Pane).attrs(({ theme }) => ({

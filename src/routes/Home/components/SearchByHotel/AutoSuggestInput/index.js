@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Autocomplete, TextInput } from 'evergreen-ui';
 import { useIntl } from 'react-intl';
+import { getHotels } from '../../../../../services/search';
+
 
 const hotelNames = [
   'Coooo1',
@@ -17,11 +20,16 @@ const getSuggestions = (value) => {
 };
 
 export const AutosuggestInput = ({ onChange }) => {
+  // const dispatch = useDispatch();
+  // const autoCompleteResults = useSelector(({ search }) => search.autoCompleteResults);
   const { formatMessage } = useIntl();
+  // console.log(autoCompleteResults);
   const [suggestions, setSuggestions] = useState([]);
+  // dispatch(getHotels('Inn'));
   const onChangeInner = (newValue) => {
     onChange({ value: newValue, valid: suggestions.includes(newValue) });
     if (suggestions.length === 0 && newValue.length >= 2) {
+    // dispatch(getHotels(newValue));
       setTimeout(() => {
         setSuggestions(getSuggestions(newValue));
       }, 500);

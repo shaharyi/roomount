@@ -4,6 +4,7 @@ const user = localStorage.getItem('USER');
 const initialState = {
   user: user ? JSON.parse(user) : null,
   gettingUser: false,
+  error: null,
 };
 
 const auth = (state = initialState, action) => {
@@ -11,9 +12,11 @@ const auth = (state = initialState, action) => {
     case 'LOG_IN': {
       return { ...state, gettingUser: true };
     }
+    case 'LOG_IN_ERROR': {
+      return { ...state, error: action.data };
+    }
     case 'SET_USER': {
       localStorage.setItem('USER', JSON.stringify(action.user));
-      console.log(action.user);
       return {
         ...state,
         user: action.user,

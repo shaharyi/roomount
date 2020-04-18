@@ -11,6 +11,7 @@ const initialState = {
     nights: 3,
     info: null,
   },
+  autoCompleteResults: [],
 };
 
 export const reducer = (state = initialState, action) => {
@@ -47,11 +48,16 @@ export const reducer = (state = initialState, action) => {
     case 'SET_HOTEL': {
       const { fullDetails } = state;
       fullDetails.loading = false;
-      console.log(action);
       fullDetails.info = action.data;
       return {
         ...state,
         fullDetails,
+      };
+    }
+    case 'SET_SEARCH_HOTELS': {
+      return {
+        ...state,
+        autoCompleteResults: action.data,
       };
     }
     default:

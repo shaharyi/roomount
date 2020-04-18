@@ -14,6 +14,7 @@ export const SocialAuth = ({
   centered, onFacebook, onGoogle, disabled,
 }) => {
   console.log(disabled);
+
   const onGoogleError = (data) => {
     console.error(data);
   };

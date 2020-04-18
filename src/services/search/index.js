@@ -19,3 +19,45 @@ export const getFullHotelInfo = (hotelId) => async (dispatch) => {
     data: FULL_HOTEL,
   });
 };
+
+
+export const getHotels = (searchQuery) => async (dispatch, getStore) => {
+  const url = new URL('https://roomount.com/api/v1.0/hotels');
+  const token = getStore().auth.user.access_token;
+  console.log(token);
+  url.searchParams.append('q', searchQuery);
+  const result = await fetch(url, {
+    method: 'GET',
+    mode: 'cors',
+    cache: 'no-cache',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((r) => r.json());
+  console.log(result);
+  dispatch({
+    type: 'SET_SEARCH_HOTELS',
+    data: result,
+  });
+};
+
+// const quickSearch = async (token) => {
+//   const body = JSON.stringify({
+//     hotel_name: 'Inntel Hotels Amsterdam Centre',
+//     check_in: '2020-03-27',
+//     check_out: '2020-04-01',
+//   });
+//   const result = await fetch('https://roomount.com/api/v1.0/quicksearch', {
+//     method: 'POST',
+//     mode: 'cors',
+//     body,
+//     cache: 'no-cache',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Authorization: `Bearer ${token}`,
+//     },
+//   }).then((r) => r.json());
+
+//   return result;
+// };

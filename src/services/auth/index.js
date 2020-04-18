@@ -1,13 +1,40 @@
 import './reducer';
 
+
+const login = async (username, password) => {
+  const body = JSON.stringify({ username, password });
+  const response = await fetch('https://roomount.com/api/v1.0/login', {
+    method: 'POST',
+    mode: 'cors',
+    body,
+    cache: 'no-cache',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const result = await response.json();
+
+  if (!response.ok) throw new Error(result.msg || response.statusText);
+
+  return {
+    ...result,
+    name: `${result.first_name} ${result.last_name ? result.last_name : ''}`.trim(),
+  };
+};
+
+
 export const emailSignIn = (email, password, history) => async (dispatch) => {
   dispatch({ type: 'LOG_IN' });
-  console.log('/auth/emailSignIn');
-  console.log('Getting user from', email, password);
-  const user = { name: 'Some Name' };
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  dispatch({ type: 'SET_USER', user });
-  history.push('/');
+  try {
+    const user = await login(email, password);
+    console.log(user);
+    // dispatch({ type: 'SET_USER', user });
+    // history.push('/');
+  } catch (e) {
+    console.error(e);
+    dispatch({ type: 'LOG_IN_ERROR', data: e.message });
+  }
 };
 
 export const facebookSignIn = (fbUser, history) => async (dispatch) => {
@@ -18,6 +45,7 @@ export const facebookSignIn = (fbUser, history) => async (dispatch) => {
   } = fbUser;
   console.log('/auth/facebookSignIn', fbUser);
   await new Promise((resolve) => setTimeout(resolve, 2000));
+  return;
   dispatch({ type: 'SET_USER', user: { name, avatar: picture.data.url } });
   history.push('/');
 };
