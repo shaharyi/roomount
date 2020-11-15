@@ -8,7 +8,7 @@ import {
 } from 'evergreen-ui';
 import { logOut } from '../../services/auth';
 import {
-  Outer, Wrapper, UserInfo, LogoWrapper, AvatarContainer, SignInButton, FloatRight, Link,
+  Outer, Wrapper, UserInfo, LogoWrapper, AvatarContainer, SignInButton, SignUpButton, FloatRight, Link,
 } from './styles';
 import { setLocale } from '../../intl/actions';
 
@@ -23,6 +23,9 @@ export const Header = () => {
   const dispatch = useDispatch();
   const goToLogin = () => {
     history.push('/signin');
+  };
+  const goToSignUp = () => {
+    history.push('/signup');
   };
   const handleLogout = () => {
     dispatch(logOut(history));
@@ -61,7 +64,7 @@ export const Header = () => {
                       {formatMessage({ id: 'auth.signOut' })}
                     </Menu.Item>
                   </Menu>
-)}
+                )}
               >
                 <AvatarContainer>
                   <Avatar
@@ -76,9 +79,14 @@ export const Header = () => {
 
             )
             : (
-              <SignInButton onClick={goToLogin}>
-                <Text>{formatMessage({ id: 'auth.signIn' })}</Text>
-              </SignInButton>
+              <div>
+                <SignInButton onClick={goToLogin}>
+                  <Text>{formatMessage({ id: 'auth.signIn' })}</Text>
+                </SignInButton>
+                <SignUpButton onClick={goToSignUp}>
+                  <Text>{formatMessage({ id: 'signUp.signUp' })}</Text>
+                </SignUpButton>
+              </div>
             )}
         </UserInfo>
       </Wrapper>

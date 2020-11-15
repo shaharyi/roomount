@@ -45,6 +45,14 @@ span {
 }
 `;
 
+export const SignUpButton = styled(Button).attrs(() => ({
+  appearance: 'minimal',
+}))`
+span {
+color:${({ theme }) => theme.palette.blue.lightest};
+}
+`;
+
 export const SignInButton = styled(Button).attrs(() => ({
   appearance: 'minimal',
 }))`

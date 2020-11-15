@@ -1,5 +1,25 @@
 import './reducer';
 
+const signup = async (username, password) => {
+  const body = JSON.stringify({ username, password });
+  const response = await fetch('https://roomount.com/api/v1.0/register', {
+    method: 'POST',
+    mode: 'cors',
+    body,
+    cache: 'no-cache',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const result = await response.json();
+
+  if (!response.ok) throw new Error(result.msg || response.statusText);
+
+  return {
+    ...result
+  };
+};
 
 const login = async (username, password) => {
   const body = JSON.stringify({ username, password });
@@ -62,12 +82,18 @@ export const googleSignIn = (googleUser, history) => async (dispatch) => {
 };
 
 export const emailSignUp = (email, password, history) => async (dispatch) => {
-  dispatch({ type: 'LOG_IN' });
-  console.log('/auth/emailSignUp');
-  const user = { name: 'Some Name', avatar: 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png' };
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  dispatch({ type: 'SET_USER', user });
-  history.push('/');
+  dispatch({ type: 'SIGN_UP' });
+  try {
+    const success = await signup(email, password);
+    console.log('/auth/emailSignUp', success);
+    const user = { name: email.split("@")[0], avatar: 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png' };
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    dispatch({ type: 'SET_USER', user });
+    history.push('/');
+  } catch (e) {
+    console.error(e);
+    dispatch({ type: 'SIGN_UP_ERROR', data: e.message });
+  }
 };
 
 export const facebookSignUp = (fbUser, history) => async (dispatch) => {
