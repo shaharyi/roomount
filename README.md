@@ -1,3 +1,32 @@
+## Doc By Shahar
+This repo was duplicated from DaveRubin. 
+It is without the additions of Amir Schnabel.
+
+### Make sure you did:
+
+* `$ sudo apt install npm`
+* Set "homepage" in package.json if needed
+* `$ npm install` 
+
+   or 
+* `$ npm clean-install`
+
+### In apache conf:
+```
+<VirtualHost *:443>
+...
+Alias "/ui/" "/var/www/html/ui/"
+<Directory "/var/www/html/ui">
+  # Options +Indexes  
+  AllowOverride None
+  Order allow,deny  
+  Allow from all
+</Directory>
+...
+```
+
+## Doc By React
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
