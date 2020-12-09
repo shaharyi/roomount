@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 import { SearchByHotel } from '../SearchByHotel';
 import { MapWrapper } from '../MapWrapper';
 import { SearchFilters } from '../SearchFilters';
-import { searchHotels } from '../../../../services/search';
+import { quickSearch } from '../../../../services/search';
 import {
   SectionContainer,
 } from './styles';
@@ -24,7 +24,7 @@ export const SideSearch = () => {
   const history = useHistory();
   const [searchOption, setSearchOption] = useState(SEARCH_OPTIONS.HOTEL);
   const onSearch = (searchTerms) => {
-    dispatch(searchHotels(searchTerms, history));
+    dispatch(quickSearch(searchTerms, history));
   };
   const options = [
     { label: formatMessage({ id: 'search.specific' }), value: SEARCH_OPTIONS.HOTEL },
