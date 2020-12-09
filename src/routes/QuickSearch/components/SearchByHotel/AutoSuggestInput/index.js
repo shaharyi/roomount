@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Autocomplete, TextInput } from 'evergreen-ui';
 import { useIntl } from 'react-intl';
-// import { getHotels } from '../../../../../services/search';
+import { getHotels } from '../../../../../services/search';
 
 
 const hotelNames = [
@@ -16,22 +16,22 @@ const getSuggestions = (value) => {
   const inputValue = value.trim().toLowerCase();
   const inputLength = inputValue.length;
 
-  return hotelNames.filter((lang) => lang.toLowerCase().slice(0, inputLength) === inputValue);
+  //return hotelNames.filter((lang) => lang.toLowerCase().slice(0, inputLength) === inputValue);
+  return hotelNames.filter((lang) => lang.toLowerCase().indexOf(inputValue) > -1);
 };
 
 export const AutosuggestInput = ({ onChange }) => {
-  // const dispatch = useDispatch();
-  // const autoCompleteResults = useSelector(({ search }) => search.autoCompleteResults);
+  const dispatch = useDispatch();
   const { formatMessage } = useIntl();
-  // console.log(autoCompleteResults);
+  const autoCompleteResults = useSelector(({ search }) => search.autoCompleteResults.map(a => a.name));
+  console.log(autoCompleteResults);
   const [suggestions, setSuggestions] = useState([]);
-  // dispatch(getHotels('Inn'));
   const onChangeInner = (newValue) => {
     onChange({ value: newValue, valid: suggestions.includes(newValue) });
-    if (suggestions.length === 0 && newValue.length >= 2) {
-    // dispatch(getHotels(newValue));
+    if (newValue.length >= 2  && suggestions.indexOf(newValue) == -1) {
       setTimeout(() => {
-        setSuggestions(getSuggestions(newValue));
+        dispatch(getHotels(newValue));
+        setSuggestions(autoCompleteResults);
       }, 500);
     }
   };

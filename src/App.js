@@ -8,6 +8,7 @@ import { Pane } from 'evergreen-ui';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Home } from './routes/Home';
+import { QuickSearch } from './routes/QuickSearch';
 import { SignIn } from './routes/SignIn';
 import { SignUp } from './routes/SignUp';
 import { Reserve } from './routes/Reserve';
@@ -23,6 +24,7 @@ function App() {
         <Pane minHeight="calc(100vh - 120px)">
           <Switch>
             <Route path="/route1" component={() => <div>route1</div>} />
+            <Route path="/quicksearch" component={QuickSearch} />
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
             <Route path="/hotelInfo/:hotelId" component={Home} />

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { DateRangePicker } from 'react-dates';
 import { useIntl } from 'react-intl';
-import PropTypes from 'prop-types';
-import {
-  Button, Paragraph, minorScale,
-} from 'evergreen-ui';
-import { AutosuggestInput } from './AutoSuggestInput';
-import { DateRangePickerWrapper } from './styles';
+import { Button, Paragraph, minorScale } from 'evergreen-ui';
+
+import { DateRangePickerWrapper, HotelAutoCompleteWrapper } from './styles';
+import { HotelAutoComplete } from './HotelAutoComplete';
+
 
 export const SearchByHotel = ({ onSearch }) => {
   const { formatMessage } = useIntl();
@@ -15,10 +15,8 @@ export const SearchByHotel = ({ onSearch }) => {
   const [endDate, setEndDate] = useState(null);
   const [focusedInput, setFocusedInput] = useState(null);
 
-  const isFormValid = () => startDate != null
-  && endDate != null
-  && startDate < endDate
-  && !!searchString;
+  const isFormValid = () => startDate != null && endDate != null && startDate < endDate && !!searchString;
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('submit', startDate != null, endDate != null, startDate < endDate, !!searchString);
@@ -37,7 +35,9 @@ export const SearchByHotel = ({ onSearch }) => {
 
   return (
     <form id="search_hotels" onSubmit={handleSubmit}>
-      <AutosuggestInput onChange={onAutoSuggestChange} />
+      <HotelAutoCompleteWrapper>
+        <HotelAutoComplete onChange={onAutoSuggestChange} />
+      </HotelAutoCompleteWrapper>
       <DateRangePickerWrapper marginBottom={minorScale(2)}>
         <DateRangePicker
           showDefaultInputIcon
@@ -56,7 +56,7 @@ export const SearchByHotel = ({ onSearch }) => {
           <Paragraph>
             {getNightsStay()}
           </Paragraph>
-        ) }
+        )}
       </DateRangePickerWrapper>
 
       <Button type="submit" form="search_hotels" value="Submit" appearance="primary">

@@ -2,7 +2,7 @@ import './reducer';
 
 const signup = async (username, password) => {
   const body = JSON.stringify({ username, password });
-  const response = await fetch('https://roomount.com/api/v1.0/register', {
+  const response = await fetch(process.env.REACT_APP_API_URL+'/register', {
     method: 'POST',
     mode: 'cors',
     body,
@@ -23,7 +23,7 @@ const signup = async (username, password) => {
 
 const login = async (username, password) => {
   const body = JSON.stringify({ username, password });
-  const response = await fetch('https://roomount.com/api/v1.0/login', {
+  const response = await fetch(process.env.REACT_APP_API_URL + '/login', {
     method: 'POST',
     mode: 'cors',
     body,

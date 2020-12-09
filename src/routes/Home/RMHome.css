@@ -1,0 +1,189 @@
+.mBody{
+  width: calc(100% - 10px);
+  height:calc(100%- 50px);
+ 
+  display: inline-flex;
+  justify-content: center;
+  font-family: "Arial"
+ 
+}
+
+.innerBody {
+	width: 800px;
+    height: calc(100% - 100px);
+ 	background-color: #ffffff;
+   	opacity: 0.7;
+    margin: 20px 20px 20px 20px;
+   	max-width: 800px;
+
+}
+
+.RMHotelLocationBar {
+  padding: 20px 20px 20px 0px;
+  display: flex;
+  width: calc(100% - 30px);
+  justify-content: space-between;
+}
+
+.mainDiv {
+  margin: 20px 20px 20px 20px;
+}
+
+.header {
+	display: flex;
+	width: calc(100% - 30px);
+	justify-content: space-between;
+}
+
+.header-left {
+   width: 100%;
+}
+
+.header-right {
+  width: 100%;
+}
+
+.RMActionLeft {
+  width: 100%;
+}
+
+.RMActionRight {
+  width: 100%;
+}
+
+.headerText {
+  font-size: 24px;
+  color: #1d1d1d;
+  opacity: 1.0
+}
+
+.RMInputField {
+	height: 40px;
+	background-color: white;
+	opacity: 1.0;
+	width: 80%;
+}
+
+.RMAction {
+  font-size: 13px;
+}
+
+.RMActionCell {
+    display: table-cell;
+}
+
+.RMActionsRow {
+    display: table-row;
+}
+
+.RMMainTable {
+    display: table;
+    font-size: 13px;
+    table-layout:fixed;
+    text-align:center;
+    width: 100%;
+}
+
+.RMActionsBar {
+  
+}
+
+.RMActionRow {
+    display: table-row;
+}
+
+.actionsBar2 {
+  padding: 20px 20px 20px 20px;
+  display: flex;
+  width: calc(100% - 30px);
+  justify-content: center;
+}
+
+.hwd {
+	background-color: #0000ff !important;
+}
+
+.actionButton {
+   
+  width: 140px;
+  max-width: 140px;
+  min-height: 40px;
+  height: 40px;
+  background-color: #cc55ff;
+  z-index: 100;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.dateSelector {
+	width: 50px;
+	min-width: 50px;
+	max-width: 50px;
+	height:  40px;
+	background-color: rgb(dd,dd,dd);
+}
+
+ 
+
+.RMYourStay {
+    margin-right: 0.5em;
+}
+
+
+.linkItem {
+  margin-right: 10px;
+}
+.RMSignIn {
+	padding: 10px 10px 10px 10px;
+	font-size: 18px;
+  display: table-row;
+}
+
+.RMSignLink {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.RMActionTable {
+    display: table;
+}
+
+.RMDateRows {
+  text-align: center;
+  table-layout: fixed;
+  width:100%;
+}
+
+.RMMessage {
+  width: 100%;
+  height: 100px;
+  padding: 10px 10px 10px 10px;
+  border: none;
+  display: table-caption;
+}
+.messageWidget {
+	width: 100%;
+	border: none;
+	height: 100%;
+	overflow-y: hidden;
+	resize: none;
+}
+
+.RMStaticPane {
+    padding: 5em;
+    background-color: #cccccc;
+    width: 80%;
+    height: 60%;
+}
+
+.RMLinkBar {
+  position: fixed;
+  bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: white;
+  padding: 1em 0.5em 0.5em 0.5em;
+  vertical-align:middle;
+}

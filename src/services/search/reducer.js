@@ -17,7 +17,10 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SHOW_ON_MAP': {
-      return { ...state, viewedHotel: action.payload };
+      return {
+        ...state,
+        viewedHotel: action.payload
+      };
     }
     case 'SET_RESULTS': {
       return {

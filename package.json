@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://localhost:3000/ui",
   "dependencies": {
+    "babel-loader": "^8.0.6",
     "evergreen-ui": "^4.22.0",
     "payment-icons": "^1.2.1",
     "pigeon-maps": "^0.14.0",
@@ -11,6 +12,7 @@
     "pigeon-overlay": "^0.2.3",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
+    "react-autocomplete": "^1.8.1",
     "react-dates": "^21.5.0",
     "react-dom": "^16.12.0",
     "react-facebook-login": "^4.1.1",
@@ -23,6 +25,7 @@
     "react-scripts": "3.2.0",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
     "styled-components": "^4.4.1"
   },
   "scripts": {

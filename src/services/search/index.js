@@ -22,7 +22,7 @@ export const getFullHotelInfo = (hotelId) => async (dispatch) => {
 
 
 export const getHotels = (searchQuery) => async (dispatch, getStore) => {
-  const url = new URL('https://roomount.com/api/v1.0/hotels');
+  const url = new URL(process.env.REACT_APP_API_URL + '/hotels');
   const token = getStore().auth.user.access_token;
   console.log(token);
   url.searchParams.append('q', searchQuery);
@@ -35,7 +35,7 @@ export const getHotels = (searchQuery) => async (dispatch, getStore) => {
       Authorization: `Bearer ${token}`,
     },
   }).then((r) => r.json());
-  console.log(result);
+  console.log("RESULT: " + result);
   dispatch({
     type: 'SET_SEARCH_HOTELS',
     data: result,
@@ -48,7 +48,7 @@ export const getHotels = (searchQuery) => async (dispatch, getStore) => {
 //     check_in: '2020-03-27',
 //     check_out: '2020-04-01',
 //   });
-//   const result = await fetch('https://roomount.com/api/v1.0/quicksearch', {
+//   const result = await fetch(process.env.REACT_APP_API_URL+'/quicksearch', {
 //     method: 'POST',
 //     mode: 'cors',
 //     body,
