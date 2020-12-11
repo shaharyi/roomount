@@ -40,7 +40,10 @@ const getSortFunction = (sortBy, isAsc) => {
 
 export const HotelResults = () => {
   const { formatMessage } = useIntl();
-  const { results, isLoading } = useSelector((state) => state.search);
+  const results = useSelector(({search}) => search.results);
+  console.log("RESULTS:");
+  console.log(results);;
+  const isLoading = useSelector(({search}) => search.isLoading);
   const [sortBy, setSortBy] = useState('time');
   const [asc, setAsc] = useState(true);
   const options = [

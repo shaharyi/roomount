@@ -16,6 +16,7 @@ export const QuickSearch = () => {
   const match = useRouteMatch();
   const dispatch = useDispatch();
   const { fullDetails } = useSelector((state) => state.search);
+  const results = useSelector(({search}) => search.results);
   const isHotelView = !!match.params.hotelId;
   const differentIds = () => !fullDetails.info || fullDetails.info.id.toString() !== match.params.hotelId;
   if (isHotelView && !fullDetails.loading && differentIds()) {
@@ -32,7 +33,6 @@ export const QuickSearch = () => {
         {isHotelView
           ? <HotelPage />
           : <HotelResults /> }
-
       </ResultsWrapper>
     </MainWrapper>
   );

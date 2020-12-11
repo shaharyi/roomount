@@ -13,7 +13,7 @@ export const HotelAutoComplete = ({ onChange }) => {
 
   const dispatch = useDispatch();
   const { formatMessage } = useIntl();
-  const autoCompleteResults = useSelector(({ search }) => search.autoCompleteResults); //.map(a => a.name));
+  const autoCompleteResults = useSelector(({ search }) => search.autoCompleteResults)
   console.log(autoCompleteResults);
 
   return (

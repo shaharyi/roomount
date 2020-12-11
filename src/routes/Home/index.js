@@ -103,7 +103,7 @@ export const Home = ({ authService }) => {
                 <label className="RMYourStay">Your Stay</label>
                 <DateRangePicker
                   openDirection="up"
-                  popperPlacement="top-start"
+                  // popperPlacement="top-start"
                   startDate={startDateInput}
                   startDateId="your_unique_start_date_id"
                   endDate={endDateInput}

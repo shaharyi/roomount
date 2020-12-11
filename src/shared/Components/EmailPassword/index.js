@@ -21,7 +21,7 @@ export const EmailPassword = ({
         isInvalid={error}
         width="100%"
         marginBottom={minorScale(2)}
-        value={email}
+        value={email || process.env.REACT_APP_DEF_USER }
         onChange={(e) => setEmail(e.target.value)}
         placeholder="email"
         type="email"

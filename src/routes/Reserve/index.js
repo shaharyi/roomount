@@ -1,8 +1,8 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { useSelector, useDispatch } from 'react-redux';
+//import { useSelector, useDispatch } from 'react-redux';
 import {
-  Pane, Heading, Text, minorScale, Checkbox, Select, TextInputField, Paragraph, Label, Button,
+  Pane, Heading, Text, minorScale, Select, TextInputField, Label, Button,
 } from 'evergreen-ui';
 import { MOCK_INFO, MOCK_ROOMS } from './mock';
 import {
@@ -26,7 +26,7 @@ export const Reserve = () => {
     .map((room) => ({ ...room, amount: searchrooms[room.id] }));
   console.log(reserved);
 
-  const summery = {
+  const summary = {
     reservationNumber: '10',
     startDate: '30/02/2010',
     endDate: '12/03/2010',
@@ -70,10 +70,10 @@ export const Reserve = () => {
             {formatMessage({ id: 'reservation.title' })}
           </Heading>
           <Pane marginTop={minorScale(4)}>
-            {getSummaryLine('reservation.reservationNumber', summery.reservationNumber)}
-            {getSummaryLine('reservation.checkIn', summery.startDate)}
-            {getSummaryLine('reservation.checkOut', summery.endDate)}
-            {getSummaryLine('reservation.totalStayPrice', summery.totalStayPrice)}
+            {getSummaryLine('reservation.reservationNumber', summary.reservationNumber)}
+            {getSummaryLine('reservation.checkIn', summary.startDate)}
+            {getSummaryLine('reservation.checkOut', summary.endDate)}
+            {getSummaryLine('reservation.totalStayPrice', summary.totalStayPrice)}
           </Pane>
           <Pane marginTop={minorScale(4)}>
             <Heading size={800}>{formatMessage({ id: 'reservation.orderDetails' })}</Heading>

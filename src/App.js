@@ -27,7 +27,7 @@ function App() {
             <Route path="/quicksearch" component={QuickSearch} />
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
-            <Route path="/hotelInfo/:hotelId" component={Home} />
+            <Route path="/hotelInfo/:hotelId" component={QuickSearch} />
             <Route path="/reserve" component={Reserve} />
             <Route path="/" component={Home} />
           </Switch>

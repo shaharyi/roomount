@@ -46,30 +46,38 @@ export const quickSearch = (searchTerms, history) => async (dispatch, getStore) 
   const url = new URL(process.env.REACT_APP_API_URL + '/quicksearch');
   const token = getStore().auth.user.access_token;
   searchTerms = {
-    searchString: 'Inntel Hotels Amsterdam Centre',
+    searchString: 1,
     startDate: '2020-04-27',
     endDate: '2020-05-01',
   };
-  const query = JSON.stringify({ 
-    hotel_name: searchTerms.searchString,
+  
+  const query = {
+    hotel_id: searchTerms.searchString,
     check_in: searchTerms.startDate,
     check_out: searchTerms.endDate,
-  })
+  };
+
+  console.log("Query:");
+  console.log(query);
+
   const body = JSON.stringify(query);
+
   const result = await fetch(url, {
     method: 'POST',
     mode: 'cors',
     body,
     cache: 'no-cache',
     headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json', 
+      'Authorization': `Bearer ${token}`,
     },
   }).then((r) => r.json());
+
   console.log("RESULT: " + result);
+  history.push('/hotelInfo/' + query.hotel_id)
+
   dispatch({
     type: 'SET_RESULTS',
     data: result,
-  });
-  history.push('/');
+  });  
 };
