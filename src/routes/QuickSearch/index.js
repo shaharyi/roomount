@@ -17,9 +17,9 @@ export const QuickSearch = () => {
   const dispatch = useDispatch();
   const { fullDetails } = useSelector((state) => state.search);
   const isHotelView = !!match.params.hotelId;
-  const differentIds = () => !fullDetails.info || fullDetails.info.id.toString() !== match.params.hotelId;
+  const differentIds = () => !fullDetails.hotel_info || fullDetails.hotel_info.id.toString() !== match.params.hotelId;
   if (isHotelView && !fullDetails.loading && differentIds()) {
-    console.log('---------', fullDetails.loading, fullDetails.info, match.params.hotelId);
+    console.log('---------', fullDetails.loading, fullDetails.hotel_info, match.params.hotelId);
     dispatch(getHotelInfo(match.params.hotelId));
   }
   // console.log('ISHOTEL VIEW', fullDetails, match.params);

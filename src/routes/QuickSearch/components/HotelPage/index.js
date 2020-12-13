@@ -16,7 +16,7 @@ import { RulesAndPolicies } from './RulesAndPolicies';
 
 export const HotelPage = () => {
   const { formatMessage } = useIntl();
-  const { info, loading } = useSelector((state) => state.search.fullDetails);
+  const { loading, nights, hotel_info, offers } = useSelector((state) => state.search.fullDetails);
   const roomsRef = useRef();
   const facilitiesRef = useRef();
   const rulesRef = useRef();
@@ -28,7 +28,7 @@ export const HotelPage = () => {
 
   const dispatch = useDispatch();
 
-  const onShowOnMapClicked = () => dispatch({ type: 'SHOW_ON_MAP', payload: info });
+  const onShowOnMapClicked = () => dispatch({ type: 'SHOW_ON_MAP', payload: hotel_info });
 
   return (
     <div>
@@ -49,14 +49,14 @@ export const HotelPage = () => {
           <HotelInfo>
             <Pane>
               <Heading size={800}>
-                {info.name}
-                <StarsCount stars={info.stars} />
+                {hotel_info.name}
+                <StarsCount stars={hotel_info.stars} />
               </Heading>
               <Paragraph>
-                {info.address}
+                {hotel_info.address}
                 <Button appearance="minimal" onClick={onShowOnMapClicked}>{formatMessage({ id: 'hotel.showOnMap' })}</Button>
               </Paragraph>
-              <Paragraph>{formatMessage({ id: 'hotel.kmFromCenter' }, { kmFromCenter: info.kmFromCenter })}</Paragraph>
+              <Paragraph>{formatMessage({ id: 'hotel.kmFromCenter' }, { kmFromCenter: hotel_info.kmFromCenter })}</Paragraph>
             </Pane>
             <Pane>
               <Button appearance="primary">{formatMessage({ id: 'hotelPage.reserve' })}</Button>
@@ -71,7 +71,7 @@ export const HotelPage = () => {
 
           <Pane>
             <Carousel infiniteLoop useKeyboardArrows>
-              {info.gallery.map((image, index) => (
+              {hotel_info.gallery.map((image, index) => (
                 <div key={image}>
                   <img src={image} alt={`Image_${index}`} />
                 </div>
@@ -82,7 +82,7 @@ export const HotelPage = () => {
           <Pane>
             <Heading marginBottom={minorScale(3)}>{formatMessage({ id: 'hotelPage.description' })}</Heading>
             <Paragraph marginBottom={minorScale(3)}>
-              {info.description}
+              {hotel_info.description}
             </Paragraph>
           </Pane>
           <div ref={roomsRef}>

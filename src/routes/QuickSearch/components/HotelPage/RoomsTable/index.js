@@ -33,13 +33,13 @@ export const RefundElement = (type) => {
 
 export const RoomsTable = () => {
   const { formatMessage } = useIntl();
-  const { search: { fullDetails: { info, nights } }, reservation } = useSelector((state) => state);
-  const { roomTypes } = info;
+  const { search: { fullDetails: { hotel_info, offers, nights } }, reservation } = useSelector((state) => state);
+  const { roomTypes } = offers;
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
-    if (reservation.hotelId !== info.id) {
-      dispatch({ type: 'SET_HOTEL_ID', payload: { hotelId: info.id } });
+    if (reservation.hotelId !== hotel_info.id) {
+      dispatch({ type: 'SET_HOTEL_ID', payload: { hotelId: hotel_info.id } });
     }
   }, [info, dispatch, reservation]);
   const setRoomCount = (roomId, count) => {

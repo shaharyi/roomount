@@ -9,7 +9,7 @@ import { SearchByHotel } from '../SearchByHotel';
 import { SearchByLocation } from '../SearchByLocation';
 import { MapWrapper } from '../MapWrapper';
 import { SearchFilters } from '../SearchFilters';
-import { searchHotels, getFullHotelData } from '../../../../services/search';
+import { searchHotels, getHotelInfo, quickSearch } from '../../../../services/search';
 import {
   SectionContainer,
 } from './styles';
@@ -26,10 +26,14 @@ export const SideSearch = () => {
   const [searchOption, setSearchOption] = useState(SEARCH_OPTIONS.HOTEL);
   const onSearch = (searchTerms) => {
     if (searchOption === SEARCH_OPTIONS.HOTEL) {
-      dispatch(getFullHotelData(searchTerms, history));
+      dispatch(getHotelInfo(searchTerms.hotelId));
+      dispatch(quickSearch(searchTerms));
+      history.push('/hotelInfo/' + searchTerms.hotelId)
     }
-    else
-      dispatch(searchHotels(searchTerms, history));
+    else {
+      dispatch(searchHotels(searchTerms));
+      history.push('/' + searchTerms.hotelId)
+    }
   };
   const options = [
     { label: formatMessage({ id: 'search.specific' }), value: SEARCH_OPTIONS.HOTEL },

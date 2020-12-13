@@ -10,26 +10,25 @@ import { HotelAutoComplete } from './HotelAutoComplete';
 
 export const SearchByHotel = ({ onSearch }) => {
   const { formatMessage } = useIntl();
-  const [searchString, setSearchString] = useState('');
+//  const [searchString, setSearchString] = useState('');
+  const [hotelId, setHotelId] = useState(-1);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [focusedInput, setFocusedInput] = useState(null);
 
-  const isFormValid = () => startDate != null && endDate != null && startDate < endDate && !!searchString;
+  const isFormValid = () => startDate != null && endDate != null && startDate < endDate && hotelId > -1;
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('submit', startDate != null, endDate != null, startDate < endDate, !!searchString);
+    console.log('submit', startDate != null, endDate != null, startDate < endDate, hotelId);
 
     const startISO = startDate.format('YYYY-MM-DD');
     const endISO = endDate.format('YYYY-MM-DD');
     if (isFormValid()) {
-      onSearch({ startISO, endISO, searchString });
+      onSearch({ startISO, endISO, hotelId });
     }
   };
-  const onHotelAutoChange = ({ value, valid }) => {
-    setSearchString(valid ? value : 0);
-  };
+
   const getNightsStay = () => {
     const nights = endDate.diff(startDate, 'days');
     return formatMessage({ id: 'search.nightsStay' }, { nights });
@@ -38,7 +37,7 @@ export const SearchByHotel = ({ onSearch }) => {
   return (
     <form id="search_hotels" onSubmit={handleSubmit}>
       <HotelAutoCompleteWrapper>
-        <HotelAutoComplete onChange={onHotelAutoChange} />
+        <HotelAutoComplete onChange={ ({value}) => setHotelId(value) }  />
       </HotelAutoCompleteWrapper>
       <DateRangePickerWrapper marginBottom={minorScale(2)}>
         <DateRangePicker
