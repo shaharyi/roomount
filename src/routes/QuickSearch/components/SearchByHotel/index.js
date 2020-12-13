@@ -27,8 +27,8 @@ export const SearchByHotel = ({ onSearch }) => {
       onSearch({ startISO, endISO, searchString });
     }
   };
-  const onAutoSuggestChange = ({ value, valid }) => {
-    setSearchString(valid ? value : '');
+  const onHotelAutoChange = ({ value, valid }) => {
+    setSearchString(valid ? value : 0);
   };
   const getNightsStay = () => {
     const nights = endDate.diff(startDate, 'days');
@@ -38,7 +38,7 @@ export const SearchByHotel = ({ onSearch }) => {
   return (
     <form id="search_hotels" onSubmit={handleSubmit}>
       <HotelAutoCompleteWrapper>
-        <HotelAutoComplete onChange={onAutoSuggestChange} />
+        <HotelAutoComplete onChange={onHotelAutoChange} />
       </HotelAutoCompleteWrapper>
       <DateRangePickerWrapper marginBottom={minorScale(2)}>
         <DateRangePicker

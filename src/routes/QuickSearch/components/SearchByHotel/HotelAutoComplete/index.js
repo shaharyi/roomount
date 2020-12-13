@@ -18,8 +18,12 @@ export const HotelAutoComplete = ({ onChange }) => {
 
   return (
     <Autocomplete
-      inputProps={{ id: 'states-autocomplete' , style: { width: '100%' } }}
-      wrapperStyle={{ width:'100%', position: 'relative', display: 'inline-block' }}
+      inputProps={{
+        id: 'states-autocomplete',
+        style: { width: '100%' },
+        placeholder: formatMessage({ id: 'search.getBestPrices' })
+      }}
+      wrapperStyle={{ width: '100%', position: 'relative', display: 'inline-block' }}
       value={value}
       items={hotels}
       getItemValue={(item) => item.name}
@@ -29,9 +33,8 @@ export const HotelAutoComplete = ({ onChange }) => {
         setHotelNames([item]);
         // or you could reset it to a default list again
         //setHotelNames(autoCompleteResults);
-        let names = hotels.map(a=>a.name);
-        onChange({ value: value, valid: names.includes(value) });
-      }}          
+        onChange({ value: item.id });
+      }}
       onChange={(event, value) => {
         setValue(value);
         dispatch(getHotels(value));
@@ -46,7 +49,7 @@ export const HotelAutoComplete = ({ onChange }) => {
       renderItem={(item, isHighlighted) => (
         <div
           className={`item ${isHighlighted ? 'item-highlighted' : ''}`}
-          key={item.abbr}
+          key={item.id.toString()}
         >{item.name}</div>
       )}
     />

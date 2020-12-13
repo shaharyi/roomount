@@ -6,9 +6,10 @@ import {
 } from 'evergreen-ui';
 import { useHistory } from 'react-router-dom';
 import { SearchByHotel } from '../SearchByHotel';
+import { SearchByLocation } from '../SearchByLocation';
 import { MapWrapper } from '../MapWrapper';
 import { SearchFilters } from '../SearchFilters';
-import { quickSearch } from '../../../../services/search';
+import { searchHotels, getFullHotelData } from '../../../../services/search';
 import {
   SectionContainer,
 } from './styles';
@@ -24,7 +25,11 @@ export const SideSearch = () => {
   const history = useHistory();
   const [searchOption, setSearchOption] = useState(SEARCH_OPTIONS.HOTEL);
   const onSearch = (searchTerms) => {
-    dispatch(quickSearch(searchTerms, history));
+    if (searchOption === SEARCH_OPTIONS.HOTEL) {
+      dispatch(getFullHotelData(searchTerms, history));
+    }
+    else
+      dispatch(searchHotels(searchTerms, history));
   };
   const options = [
     { label: formatMessage({ id: 'search.specific' }), value: SEARCH_OPTIONS.HOTEL },
@@ -45,7 +50,7 @@ export const SideSearch = () => {
       <SectionContainer>
         {searchOption === SEARCH_OPTIONS.HOTEL
           ? <SearchByHotel onSearch={onSearch} />
-          : <SearchByHotel onSearch={onSearch} />}
+          : <SearchByLocation onSearch={onSearch} />}
       </SectionContainer>
       <SectionContainer>
         <MapWrapper />

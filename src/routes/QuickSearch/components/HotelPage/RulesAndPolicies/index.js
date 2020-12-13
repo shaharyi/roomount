@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
-import { Pane, Paragraph, minorScale } from 'evergreen-ui';
+import { Pane, Paragraph } from 'evergreen-ui';
 import { CardIcon } from './styles';
 
 export const RulesAndPolicies = () => {

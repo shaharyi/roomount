@@ -8,7 +8,7 @@ import {
 import { AutosuggestInput } from './AutoSuggestInput';
 import { DateRangePickerWrapper } from './styles';
 
-export const SearchByHotel = ({ onSearch }) => {
+export const SearchByLocation = ({ onSearch }) => {
   const { formatMessage } = useIntl();
   const [searchString, setSearchString] = useState('');
   const [startDate, setStartDate] = useState(null);
@@ -66,6 +66,6 @@ export const SearchByHotel = ({ onSearch }) => {
     </form>
   );
 };
-SearchByHotel.propTypes = {
+SearchByLocation.propTypes = {
   onSearch: PropTypes.func.isRequired,
 };

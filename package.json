@@ -4,7 +4,6 @@
   "private": true,
   "homepage": "http://localhost:3000/ui",
   "dependencies": {
-    "babel-loader": "^8.0.6",
     "evergreen-ui": "^4.22.0",
     "payment-icons": "^1.2.1",
     "pigeon-maps": "^0.14.0",

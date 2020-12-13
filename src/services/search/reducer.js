@@ -9,7 +9,8 @@ const initialState = {
   fullDetails: {
     loading: false,
     nights: 3,
-    info: null,
+    hotel_info: null,
+    offers: null,
   },
   autoCompleteResults: [],
 };
@@ -29,7 +30,8 @@ export const reducer = (state = initialState, action) => {
         results: action.data,
         fullDetails: {
           loading: false,
-          info: null,
+          hotel_info: null,
+          offers: null,
         },
       };
     }
@@ -40,7 +42,7 @@ export const reducer = (state = initialState, action) => {
         isLoading: true,
       };
     }
-    case 'GET_HOTEL': {
+    case 'GET_HOTEL_INFO': {
       const { fullDetails } = state;
       fullDetails.loading = true;
       return {
@@ -48,10 +50,27 @@ export const reducer = (state = initialState, action) => {
         fullDetails,
       };
     }
-    case 'SET_HOTEL': {
+    case 'SET_HOTEL_INFO': {
       const { fullDetails } = state;
       fullDetails.loading = false;
-      fullDetails.info = action.data;
+      fullDetails.hotel_info = action.data;
+      return {
+        ...state,
+        fullDetails,
+      };
+    }
+    case 'GET_HOTEL_OFFERS': {
+      const { fullDetails } = state;
+      fullDetails.loading = true;
+      return {
+        ...state,
+        fullDetails,
+      };
+    }
+    case 'SET_HOTEL_OFFERS': {
+      const { fullDetails } = state;
+      fullDetails.loading = false;
+      fullDetails.offers = action.data;
       return {
         ...state,
         fullDetails,

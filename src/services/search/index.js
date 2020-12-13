@@ -9,8 +9,8 @@ export const searchHotels = (options, history) => async (dispatch) => {
   history.push('/');
 };
 
-export const getFullHotelInfo = (hotelId) => async (dispatch) => {
-  dispatch({ type: 'GET_HOTEL' });
+export const getMockData = (hotelId, history) => async (dispatch) => {
+  dispatch({ type: 'GET_HOTEL_INFO' });
   await new Promise((resolve) => setTimeout(resolve, 500));
   FULL_HOTEL.id = hotelId;
   FULL_HOTEL.name = `MOCK_${hotelId}`;
@@ -20,12 +20,41 @@ export const getFullHotelInfo = (hotelId) => async (dispatch) => {
   });
 };
 
+export const getFullHotelData = (hotelId, history) => async (dispatch) => {
+  getHotelInfo(hotelId)
+  quickSearch(hotelId);
+  // history.push('/hotelInfo/' + query.hotel_id)
+};
+
+export const getHotelInfo = (hotelId) => async (dispatch, getStore) => {
+  const url = new URL(process.env.REACT_APP_API_URL + '/hotel_info/' + hotelId);
+  const token = getStore().auth.user.access_token;
+  console.log(token);
+  dispatch({ type: 'GET_HOTEL_INFO' });
+  const result = await fetch(url, {
+    method: 'GET',
+    mode: 'cors',
+    cache: 'no-cache',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((r) => r.json());
+  console.log("RESULT: " + result);
+  dispatch({
+    type: 'SET_HOTEL_INFO',
+    data: result,
+  });
+};
 
 export const getHotels = (searchQuery) => async (dispatch, getStore) => {
   const url = new URL(process.env.REACT_APP_API_URL + '/hotels');
   const token = getStore().auth.user.access_token;
   console.log(token);
   url.searchParams.append('q', searchQuery);
+  dispatch({
+    type: 'GET_SEARCH_HOTELS',
+  });  
   const result = await fetch(url, {
     method: 'GET',
     mode: 'cors',
@@ -42,7 +71,7 @@ export const getHotels = (searchQuery) => async (dispatch, getStore) => {
   });
 };
 
-export const quickSearch = (searchTerms, history) => async (dispatch, getStore) => {
+export const quickSearch = (searchTerms) => async (dispatch, getStore) => {
   const url = new URL(process.env.REACT_APP_API_URL + '/quicksearch');
   const token = getStore().auth.user.access_token;
   searchTerms = {
@@ -62,6 +91,10 @@ export const quickSearch = (searchTerms, history) => async (dispatch, getStore) 
 
   const body = JSON.stringify(query);
 
+  dispatch({
+    type: 'GET_HOTEL_OFFERS',
+  });  
+
   const result = await fetch(url, {
     method: 'POST',
     mode: 'cors',
@@ -74,10 +107,9 @@ export const quickSearch = (searchTerms, history) => async (dispatch, getStore) 
   }).then((r) => r.json());
 
   console.log("RESULT: " + result);
-  history.push('/hotelInfo/' + query.hotel_id)
 
   dispatch({
-    type: 'SET_RESULTS',
+    type: 'SET_HOTEL_OFFERS',
     data: result,
   });  
 };
