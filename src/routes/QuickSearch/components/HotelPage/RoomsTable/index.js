@@ -33,7 +33,7 @@ export const RefundElement = (type) => {
 
 export const RoomsTable = () => {
   const { formatMessage } = useIntl();
-  const { search: { fullDetails: { hotel_info, offers, nights } }, reservation } = useSelector((state) => state);
+  const { search: { fullDetails: { hotel_info, offers: { hotel_id, rooms }, nights } }, reservation } = useSelector((state) => state);
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
@@ -82,10 +82,10 @@ export const RoomsTable = () => {
             </NormalText>
           </Cell>
         </TableHeader>
-        {offers.map(({ type, rooms }, typeIndex) => {
-          const title = type;
+        {rooms.map(({ room_type, remarks, offers }, typeIndex) => {
+          const title = room_type;
           const isSecondary = typeIndex % 2 === 1;
-          return rooms.map((room, index) => (
+          return offers.map((room, index) => (
             <Row
               key={room.id}
               onSelect={() => console.log(room)}
