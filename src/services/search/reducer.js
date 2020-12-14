@@ -1,5 +1,5 @@
 import { addReducer } from '../../reduxUtils';
-import { HOTELS_MOCK } from './mockHotels';
+import { HOTELS_MOCK, MOCK_HOTEL_INFO } from './mockHotels';
 
 const initialState = {
   isLoading: false,
@@ -9,7 +9,7 @@ const initialState = {
   fullDetails: {
     loading: false,
     nights: 3,
-    hotel_info: null,
+    hotel_info: MOCK_HOTEL_INFO,
     offers: null,
   },
   autoCompleteResults: [],
@@ -43,37 +43,45 @@ export const reducer = (state = initialState, action) => {
       };
     }
     case 'GET_HOTEL_INFO': {
-      const { fullDetails } = state;
-      fullDetails.loading = true;
       return {
-        ...state,
-        fullDetails,
+        ...state,        
+        fullDetails: {
+          ...state.fullDetails,
+          loading: true,
+        }
       };
     }
     case 'SET_HOTEL_INFO': {
-      const { fullDetails } = state;
-      fullDetails.loading = false;
-      fullDetails.hotel_info = action.data;
-      return {
+      newState = {
         ...state,
-        fullDetails,
+        fullDetails: {
+          ...state.fullDetails,
+          loading: false,
+          hotel_info: action.data,
+        }
       };
+      //@todo remove this mockup
+      for (var prop in MOCK_HOTEL_INFO)
+      if (!(prop in newState.fullDetails.hotel_info))
+        newState.fullDetails.hotel_info[prop] = MOCK_HOTEL_INFO[prop];      
     }
     case 'GET_HOTEL_OFFERS': {
-      const { fullDetails } = state;
-      fullDetails.loading = true;
       return {
         ...state,
-        fullDetails,
+        fullDetails : {
+          ...state.fullDetails,
+          loading:true,
+        }
       };
     }
     case 'SET_HOTEL_OFFERS': {
-      const { fullDetails } = state;
-      fullDetails.loading = false;
-      fullDetails.offers = action.data;
       return {
         ...state,
-        fullDetails,
+        fullDetails : {
+          ...state.fullDetails,
+          loading: false,
+          offers: action.data,
+        }
       };
     }
     case 'SET_SEARCH_HOTELS': {
