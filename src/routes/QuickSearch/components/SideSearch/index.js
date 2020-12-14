@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import {
   SegmentedControl, Heading,
@@ -9,7 +9,7 @@ import { SearchByHotel } from '../SearchByHotel';
 import { SearchByLocation } from '../SearchByLocation';
 import { MapWrapper } from '../MapWrapper';
 import { SearchFilters } from '../SearchFilters';
-import { searchHotels, getHotelInfo, quickSearch } from '../../../../services/search';
+import { searchHotels, getFullHotelData } from '../../../../services/search';
 import {
   SectionContainer,
 } from './styles';
@@ -24,16 +24,11 @@ export const SideSearch = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [searchOption, setSearchOption] = useState(SEARCH_OPTIONS.HOTEL);
-  const onSearch = (searchTerms) => {
-    if (searchOption === SEARCH_OPTIONS.HOTEL) {
-      dispatch(getHotelInfo(searchTerms.hotelId));
-      dispatch(quickSearch(searchTerms));
-      history.push('/hotelInfo/' + searchTerms.hotelId)
-    }
-    else {
-      dispatch(searchHotels(searchTerms));
-      history.push('/' + searchTerms.hotelId)
-    }
+  const onSearchByHotel = (searchTerms) => {
+      dispatch(getFullHotelData(searchTerms, history));
+  }
+  const onSearchByLocation = (searchTerms) => {
+      dispatch(searchHotels(searchTerms));    
   };
   const options = [
     { label: formatMessage({ id: 'search.specific' }), value: SEARCH_OPTIONS.HOTEL },
@@ -53,8 +48,8 @@ export const SideSearch = () => {
       </SectionContainer>
       <SectionContainer>
         {searchOption === SEARCH_OPTIONS.HOTEL
-          ? <SearchByHotel onSearch={onSearch} />
-          : <SearchByLocation onSearch={onSearch} />}
+          ? <SearchByHotel onSearch={onSearchByHotel} />
+          : <SearchByLocation onSearch={onSearchByLocation} />}
       </SectionContainer>
       <SectionContainer>
         <MapWrapper />

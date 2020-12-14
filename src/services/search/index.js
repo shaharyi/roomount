@@ -19,12 +19,19 @@ export const getMockData = (hotelId) => async (dispatch) => {
   });
 };
 
+export const getFullHotelData = (searchTerms, history) => async (dispatch, getStore) => {
+  let hotelId = searchTerms.hotelId
+  await getHotelInfo(hotelId) (dispatch, getStore);
+  await quickSearch(hotelId) (dispatch, getStore);
+  history.push('/hotelInfo/' + hotelId);  
+};
+
 export const getHotelInfo = (hotelId) => async (dispatch, getStore) => {
   const url = new URL(process.env.REACT_APP_API_URL + '/hotel_info/' + hotelId);
   const token = getStore().auth.user.access_token;
   console.log(token);
   dispatch({ type: 'GET_HOTEL_INFO' });
-  const result = await fetch(url, {
+  const response = await fetch(url, {
     method: 'GET',
     mode: 'cors',
     cache: 'no-cache',
@@ -32,12 +39,14 @@ export const getHotelInfo = (hotelId) => async (dispatch, getStore) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-  }).then((r) => r.json());
-  console.log("RESULT: " + result);
+  });
+  let data = await response.json();
+  console.log("RESULT: " + data);
   dispatch({
     type: 'SET_HOTEL_INFO',
-    data: result,
+    data: data,
   });
+  return data;
 };
 
 export const getHotels = (searchQuery) => async (dispatch, getStore) => {
@@ -48,7 +57,7 @@ export const getHotels = (searchQuery) => async (dispatch, getStore) => {
   dispatch({
     type: 'GET_SEARCH_HOTELS',
   });  
-  const result = await fetch(url, {
+  const response = await fetch(url, {
     method: 'GET',
     mode: 'cors',
     cache: 'no-cache',
@@ -56,11 +65,12 @@ export const getHotels = (searchQuery) => async (dispatch, getStore) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-  }).then((r) => r.json());
-  console.log("RESULT: " + result);
+  })
+  let data = await response.json();
+  console.log("RESULT: " + data);
   dispatch({
     type: 'SET_SEARCH_HOTELS',
-    data: result,
+    data: data,
   });
 };
 
@@ -88,7 +98,7 @@ export const quickSearch = (searchTerms) => async (dispatch, getStore) => {
     type: 'GET_HOTEL_OFFERS',
   });  
 
-  const result = await fetch(url, {
+  const response = await fetch(url, {
     method: 'POST',
     mode: 'cors',
     body,
@@ -97,12 +107,14 @@ export const quickSearch = (searchTerms) => async (dispatch, getStore) => {
       'Content-Type': 'application/json', 
       'Authorization': `Bearer ${token}`,
     },
-  }).then((r) => r.json());
+  });
+  
+  let data = await response.json();
 
-  console.log("RESULT: " + result);
+  console.log("RESULT: " + data);
 
   dispatch({
     type: 'SET_HOTEL_OFFERS',
-    data: result,
+    data: data,
   });  
 };

@@ -17,6 +17,7 @@ export const QuickSearch = () => {
   const dispatch = useDispatch();
   const { fullDetails } = useSelector((state) => state.search);
   const isHotelView = !!match.params.hotelId;
+  //const isHotelView = !!fullDetails;
   const differentIds = () => !fullDetails.hotel_info || fullDetails.hotel_info.id.toString() !== match.params.hotelId;
   if (isHotelView && !fullDetails.loading && differentIds()) {
     console.log('---------', fullDetails.loading, fullDetails.hotel_info, match.params.hotelId);

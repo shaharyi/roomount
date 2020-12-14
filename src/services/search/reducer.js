@@ -44,7 +44,7 @@ export const reducer = (state = initialState, action) => {
     }
     case 'GET_HOTEL_INFO': {
       return {
-        ...state,        
+        ...state,
         fullDetails: {
           ...state.fullDetails,
           loading: true,
@@ -52,7 +52,7 @@ export const reducer = (state = initialState, action) => {
       };
     }
     case 'SET_HOTEL_INFO': {
-      newState = {
+      let newState = {
         ...state,
         fullDetails: {
           ...state.fullDetails,
@@ -62,22 +62,23 @@ export const reducer = (state = initialState, action) => {
       };
       //@todo remove this mockup
       for (var prop in MOCK_HOTEL_INFO)
-      if (!(prop in newState.fullDetails.hotel_info))
-        newState.fullDetails.hotel_info[prop] = MOCK_HOTEL_INFO[prop];      
+        if (!(prop in newState.fullDetails.hotel_info))
+          newState.fullDetails.hotel_info[prop] = MOCK_HOTEL_INFO[prop];
+      return newState;
     }
     case 'GET_HOTEL_OFFERS': {
       return {
         ...state,
-        fullDetails : {
+        fullDetails: {
           ...state.fullDetails,
-          loading:true,
+          loading: true,
         }
       };
     }
     case 'SET_HOTEL_OFFERS': {
       return {
         ...state,
-        fullDetails : {
+        fullDetails: {
           ...state.fullDetails,
           loading: false,
           offers: action.data,

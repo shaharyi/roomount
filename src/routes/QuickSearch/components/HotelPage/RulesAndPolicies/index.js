@@ -6,7 +6,7 @@ import { CardIcon } from './styles';
 
 export const RulesAndPolicies = () => {
   const { formatMessage } = useIntl();
-  const { info: { rulesAndPoliciesInfo } } = useSelector((state) => state.search.fullDetails);
+  const { hotel_info: { rulesAndPoliciesInfo } } = useSelector((state) => state.search.fullDetails);
   return (
     <Pane>
       <Paragraph>
