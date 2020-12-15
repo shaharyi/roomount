@@ -53,7 +53,7 @@ export const reducer = (state = initialState, action) => {
       };
     }
     case 'SET_HOTEL_INFO': {
-      return {
+      let newState = {
         ...state,
         fullDetails: {
           ...state.fullDetails,
@@ -61,6 +61,11 @@ export const reducer = (state = initialState, action) => {
           hotel_info: action.data,
         }
       };
+      //@todo remove this mockup
+      for (var prop in MOCK_HOTEL_INFO)
+        if (!(prop in newState.fullDetails.hotel_info))
+          newState.fullDetails.hotel_info[prop] = MOCK_HOTEL_INFO[prop];
+      return newState;
     }
     case 'GET_HOTEL_OFFERS': {
       return {

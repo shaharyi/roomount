@@ -11,16 +11,26 @@ It is without the additions of Amir Schnabel.
    or 
 * `$ npm clean-install`
 
-### In apache conf:
+### In package.json
+
+### In apache sites-enabled conf:
 ```
 <VirtualHost *:443>
 ...
-Alias "/ui/" "/var/www/html/ui/"
+Alias "/ui" "/var/www/html/ui"
 <Directory "/var/www/html/ui">
-  # Options +Indexes  
-  AllowOverride None
-  Order allow,deny  
-  Allow from all
+  Options Indexes FollowSymLinks
+  
+  # for .htacces files
+  AllowOverride All
+
+  Options -MultiViews
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^ index.html [QSA,L]
+
+  # instead of deprecated Allow and Order 
+  Require all granted
 </Directory>
 ...
 ```
