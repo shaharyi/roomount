@@ -21,7 +21,7 @@ export const HotelItem = ({
   } = data;
   const dispatch = useDispatch();
   const onShowOnMap = () => dispatch({ type: 'SHOW_ON_MAP', payload: data });
-  // /hotelInfo/id
+  
   return (
     <Wrapper>
       <Img src={image || defaultImage} alt="hotel_thumb" />

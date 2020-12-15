@@ -19,7 +19,7 @@ function App() {
 
   return (
     <IntlProvider locale={locale} messages={messages[locale]}>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Header />
         <Pane minHeight="calc(100vh - 120px)">
           <Switch>
