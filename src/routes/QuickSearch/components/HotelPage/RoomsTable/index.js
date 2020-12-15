@@ -83,42 +83,41 @@ export const RoomsTable = () => {
           </Cell>
         </TableHeader>
         {rooms.map(({ room_type, remarks, offers }, typeIndex) => {
-          const title = room_type;
           const isSecondary = typeIndex % 2 === 1;
-          return offers.map((room, index) => (
+          return offers.map((offer, index) => (
             <Row
-              key={room.id}
-              onSelect={() => console.log(room)}
+              key={offer.offer_id}
+              onSelect={() => console.log(offer)}
               highlight={isSecondary}
             >
-              <Cell><NormalText>{index === 0 ? title : ''}</NormalText></Cell>
-              <Cell><NormalText>{room.maxAdults}</NormalText></Cell>
-              <Cell><NormalText>{`${room.pricePerNight * nights}$`}</NormalText></Cell>
+              <Cell title={remarks}><NormalText>{index === 0 ? room_type : ''}</NormalText></Cell>
+              <Cell><NormalText>{offer.occupancy}</NormalText></Cell>
+              <Cell><NormalText>{offer.stay_price}</NormalText></Cell>
               <Cell>
                 <Ul>
                   <Li>
                     <NormalText>
-                      {room.breakfastPrice === 0
+                      {offer.breakfast_included
                         ? 'Breakfast Included !'
-                        : `Breakfast available at total cost of $${room.breakfastPrice}`}
+                        : 'Breakfast available at additional cost'}
                     </NormalText>
                   </Li>
                   <Li>
                     <NormalText>{`Free cancellation before midnight of ${new Date().toLocaleDateString()}`}</NormalText>
                   </Li>
                   <Li>
-                    <RefundElement type={room.cancellationType} />
+                    <RefundElement type={offer.cancel_allowed ? "free" : "partial"} />
                   </Li>
                 </Ul>
               </Cell>
 
               <Cell flexBasis={90} flexShrink={0} flexGrow={0}>
-                <Select onChange={(event) => setRoomCount(room.id, event.target.value)}>
+                <Select onChange={(event) => setRoomCount(offer.offer_id, event.target.value)}>
                   {options.map(((count) => (
                     <option
                       key={count}
                       value={count}
-                      selected={reservation && count === reservation[room.id]}
+                      selected={reservation && count === reservation[offer.offer_id]}
                     >
                       {count}
                     </option>
