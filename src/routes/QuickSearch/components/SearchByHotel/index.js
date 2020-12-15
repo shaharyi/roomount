@@ -6,11 +6,13 @@ import { Button, Paragraph, minorScale } from 'evergreen-ui';
 
 import { DateRangePickerWrapper, HotelAutoCompleteWrapper } from './styles';
 import { HotelAutoComplete } from './HotelAutoComplete';
+import { useDispatch } from 'react-redux';
 
 
 export const SearchByHotel = ({ onSearch }) => {
+  const dispatch = useDispatch();
   const { formatMessage } = useIntl();
-//  const [searchString, setSearchString] = useState('');
+  //  const [searchString, setSearchString] = useState('');
   const [hotelId, setHotelId] = useState(-1);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -18,12 +20,18 @@ export const SearchByHotel = ({ onSearch }) => {
 
   const isFormValid = () => startDate != null && endDate != null && startDate < endDate && hotelId > -1;
 
+  const handleChange = () => {
+    const details = { startDate, endDate, hotelId };
+    dispatch({ type: 'SET_SEARCH_DETAILS', searchDetails: details });
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('submit', startDate != null, endDate != null, startDate < endDate, hotelId);
 
     if (isFormValid()) {
-      onSearch({ startDate, endDate, hotelId });
+      let details = { startDate, endDate, hotelId };
+      dispatch({ type: 'SET_SEARCH_DETAILS', searchDetails: details });
+      onSearch(details);
     }
   };
 
@@ -35,7 +43,10 @@ export const SearchByHotel = ({ onSearch }) => {
   return (
     <form id="search_hotels" onSubmit={handleSubmit}>
       <HotelAutoCompleteWrapper>
-        <HotelAutoComplete onChange={ ({value}) => setHotelId(value) }  />
+        <HotelAutoComplete onChange={({ value }) => {
+          setHotelId(value);
+          handleChange();
+        }} />
       </HotelAutoCompleteWrapper>
       <DateRangePickerWrapper marginBottom={minorScale(2)}>
         <DateRangePicker
@@ -47,6 +58,7 @@ export const SearchByHotel = ({ onSearch }) => {
           onDatesChange={({ startDate, endDate }) => {
             setStartDate(startDate);
             setEndDate(endDate);
+            handleChange();
           }} // PropTypes.func.isRequired,
           focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
           onFocusChange={(focusedInputString) => setFocusedInput(focusedInputString)}

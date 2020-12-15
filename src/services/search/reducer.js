@@ -9,8 +9,7 @@ const initialState = {
   fullDetails: {
     loading: false,
     nights: 3,
-    //@todo remove this mockup
-    hotel_info: MOCK_HOTEL_INFO,
+    hotel_info: null, //MOCK_HOTEL_INFO,
     offers: null,
   },
   autoCompleteResults: [],
@@ -30,12 +29,26 @@ export const reducer = (state = initialState, action) => {
         isLoading: false,
         results: action.data,
         fullDetails: {
+          ...state.fullDetails,
           loading: false,
           hotel_info: null,
           offers: null,
         },
       };
     }
+    case 'SET_SEARCH_DETAILS': {
+      // each is Moment
+      let { startDate, endDate } = action.searchDetails;
+      let nights = (endDate - startDate) / (1000 * 3600 * 24);
+      return {
+        ...state,
+        searchDetails: action.searchDetails,
+        fullDetails: {
+            ...state.fullDetails,
+            nights: nights,
+        }
+      };
+    }    
     case 'GET_RESULTS': {
       return {
         ...state,

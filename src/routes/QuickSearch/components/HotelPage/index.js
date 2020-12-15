@@ -85,11 +85,13 @@ export const HotelPage = () => {
               {hotel_info.description}
             </Paragraph>
           </Pane>
-          <div ref={roomsRef}>
-            <SectionWrapper>
-              <RoomsTable />
-            </SectionWrapper>
-          </div>
+          {offers &&
+            <div ref={roomsRef}>
+              <SectionWrapper>
+                <RoomsTable />
+              </SectionWrapper>
+            </div>
+          }
           <div ref={facilitiesRef}>
             <SectionWrapper>
               {formatMessage({ id: 'hotelPage.facilitiesAndServices' })}
