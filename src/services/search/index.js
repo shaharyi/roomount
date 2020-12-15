@@ -22,7 +22,7 @@ export const getMockData = (hotelId) => async (dispatch) => {
 export const getFullHotelData = (searchTerms, history) => async (dispatch, getStore) => {
   let hotelId = searchTerms.hotelId
   await getHotelInfo(hotelId) (dispatch, getStore);
-  await quickSearch(hotelId) (dispatch, getStore);
+  await quickSearch(searchTerms) (dispatch, getStore);
   history.push('/hotelInfo/' + hotelId);  
 };
 
@@ -77,16 +77,11 @@ export const getHotels = (searchQuery) => async (dispatch, getStore) => {
 export const quickSearch = (searchTerms) => async (dispatch, getStore) => {
   const url = new URL(process.env.REACT_APP_API_URL + '/quicksearch');
   const token = getStore().auth.user.access_token;
-  searchTerms = {
-    searchString: 1,
-    startDate: '2020-04-27',
-    endDate: '2020-05-01',
-  };
   
   const query = {
-    hotel_id: searchTerms.searchString,
-    check_in: searchTerms.startDate,
-    check_out: searchTerms.endDate,
+    hotel_id: searchTerms.hotelId,
+    check_in: searchTerms.startDate.format('YYYY-MM-DD'),
+    check_out: searchTerms.endDate.format('YYYY-MM-DD'),
   };
 
   console.log("Query:");

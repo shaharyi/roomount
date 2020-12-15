@@ -22,10 +22,8 @@ export const SearchByHotel = ({ onSearch }) => {
     event.preventDefault();
     console.log('submit', startDate != null, endDate != null, startDate < endDate, hotelId);
 
-    const startISO = startDate.format('YYYY-MM-DD');
-    const endISO = endDate.format('YYYY-MM-DD');
     if (isFormValid()) {
-      onSearch({ startISO, endISO, hotelId });
+      onSearch({ startDate, endDate, hotelId });
     }
   };
 
